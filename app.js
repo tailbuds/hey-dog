@@ -5,7 +5,7 @@ const server = http.createServer();
 
 const breedInfo = sequelize.import('breedInfo', require('./models/breedinfo'));
 const measurementUnit = sequelize.import(
-  'measurementunits',
+  'measurementUnits',
   require('./models/measurementunits')
 );
 const countries = sequelize.import('countries', require('./models/countries'));
