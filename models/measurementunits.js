@@ -1,36 +1,31 @@
-const Sequelize = require('sequelize');
-const sequelize = require('./config/database');
+/* jshint indent: 2 */
 
-const measurementUnits = sequelize.define(
-  'measurementunits',
-  {
-    measureId: {
-      type: Sequelize.INTEGER.UNSIGNED,
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('measurementunits', {
+    'measureId': {
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
-      comment: 'null',
+      comment: "null"
     },
-    shortName: {
-      type: Sequelize.STRING(3),
+    'shortName': {
+      type: DataTypes.STRING(3),
       allowNull: false,
-      comment: 'null',
-      unique: true,
+      comment: "null",
+      unique: true
     },
-    longName: {
-      type: Sequelize.STRING(20),
+    'longName': {
+      type: DataTypes.STRING(20),
       allowNull: false,
-      comment: 'null',
-      unique: true,
+      comment: "null",
+      unique: true
     },
-    measureSystem: {
-      type: Sequelize.STRING(135),
+    'measureSystem': {
+      type: DataTypes.STRING(135),
       allowNull: false,
-      comment: 'null',
-    },
-  },
-  {
-    tableName: 'measurementunits',
-  }
-);
-
-module.exports = measurementUnits;
+      comment: "null"
+    }
+  }, {
+    tableName: 'measurementunits'
+  });
+};
