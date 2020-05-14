@@ -1,24 +1,15 @@
 const http = require('http');
-const dbConfig = require('./config/dbConfig');
+const sequelize = require('./config/database');
 
-const AutoSequelize = require('sequelize-auto');
-const autoSequelize = new AutoSequelize(
-  dbConfig.DB,
-  dbConfig.USER,
-  dbConfig.PASSWORD,
-  {
-    host: dbConfig.HOST,
-    dialect: dbConfig.dialect,
-  }
-);
+const server = http.createServer();
 
-const server = http.createServer(() => {
-  console.log('hey im wokring');
-});
-
-autoSequelize.run((err) => {
-  if (err) throw err;
-  console.log(autoSequelize.tables);
-});
+sequelize
+  .sync()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 server.listen(3500);

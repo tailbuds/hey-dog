@@ -1,226 +1,231 @@
-/* jshint indent: 2 */
+const Sequelize = require('sequelize');
+const sequelize = require('./config/database');
 
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('breedinfo', {
-    'breedId': {
-      type: DataTypes.INTEGER.UNSIGNED,
+const breedInfo = sequelize.define(
+  'breedinfo',
+  {
+    breedId: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
       primaryKey: true,
-      comment: "null",
-      autoIncrement: true
+      comment: 'null',
+      autoIncrement: true,
     },
-    'name': {
-      type: DataTypes.STRING(65),
+    name: {
+      type: Sequelize.STRING(65),
       allowNull: false,
-      comment: "null",
-      unique: true
+      comment: 'null',
+      unique: true,
     },
-    'tagline': {
-      type: DataTypes.STRING(135),
+    tagline: {
+      type: Sequelize.STRING(135),
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'bgImg': {
-      type: DataTypes.TEXT,
+    bgImg: {
+      type: Sequelize.TEXT,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'puppyImg': {
-      type: DataTypes.TEXT,
+    puppyImg: {
+      type: Sequelize.TEXT,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'minLife': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    minLife: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'maxLife': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    maxLife: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'learningRate': {
-      type: DataTypes.STRING(25),
+    learningRate: {
+      type: Sequelize.STRING(25),
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'minLitter': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    minLitter: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'maxLitter': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    maxLitter: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'size': {
-      type: DataTypes.STRING(45),
+    size: {
+      type: Sequelize.STRING(45),
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'weightUnit': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    weightUnit: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null",
+      comment: 'null',
       references: {
         model: 'measurementunits',
-        key: 'measureId'
-      }
+        key: 'measureId',
+      },
     },
-    'minMaleWeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    minMaleWeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'maxMaleWeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    maxMaleWeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'minFemaleWeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    minFemaleWeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'maxFemaleWeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    maxFemaleWeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'heightUnit': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    heightUnit: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null",
+      comment: 'null',
       references: {
         model: 'measurementunits',
-        key: 'measureId'
-      }
+        key: 'measureId',
+      },
     },
-    'minMaleHeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    minMaleHeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'maxMaleHeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    maxMaleHeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'minFemaleHeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    minFemaleHeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'maxFemaleHeight': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    maxFemaleHeight: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null"
+      comment: 'null',
     },
-    'originCountry': {
-      type: DataTypes.INTEGER.UNSIGNED,
+    originCountry: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      comment: "null",
+      comment: 'null',
       references: {
         model: 'countries',
-        key: 'countryId'
-      }
+        key: 'countryId',
+      },
     },
-    'otherNames': {
-      type: DataTypes.STRING(255),
+    otherNames: {
+      type: Sequelize.STRING(255),
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc1': {
-      type: DataTypes.TEXT,
+    desc1: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'decs2': {
-      type: DataTypes.TEXT,
+    decs2: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc3': {
-      type: DataTypes.TEXT,
+    desc3: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc4': {
-      type: DataTypes.TEXT,
+    desc4: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc5': {
-      type: DataTypes.TEXT,
+    desc5: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc6': {
-      type: DataTypes.TEXT,
+    desc6: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc7': {
-      type: DataTypes.TEXT,
+    desc7: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc8': {
-      type: DataTypes.TEXT,
+    desc8: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc9': {
-      type: DataTypes.TEXT,
+    desc9: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc10': {
-      type: DataTypes.TEXT,
+    desc10: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc11': {
-      type: DataTypes.TEXT,
+    desc11: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc12': {
-      type: DataTypes.TEXT,
+    desc12: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc13': {
-      type: DataTypes.TEXT,
+    desc13: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc14': {
-      type: DataTypes.TEXT,
+    desc14: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'desc15': {
-      type: DataTypes.TEXT,
+    desc15: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'createdOn': {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
-      comment: "null"
-    },
-    'updatedOn': {
-      type: DataTypes.DATE,
+    createdOn: {
+      type: Sequelize.DATE,
       allowNull: true,
       defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
-      comment: "null"
-    }
-  }, {
-    tableName: 'breedinfo'
-  });
-};
+      comment: 'null',
+    },
+    updatedOn: {
+      type: Sequelize.DATE,
+      allowNull: true,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+      comment: 'null',
+    },
+  },
+  {
+    tableName: 'breedinfo',
+  }
+);
+
+module.exports = breedInfo;

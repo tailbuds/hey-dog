@@ -1,63 +1,68 @@
-/* jshint indent: 2 */
+const Sequelize = require('sequelize');
+const sequelize = require('./config/database');
 
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('images', {
-    'breedID': {
-      type: DataTypes.INTEGER.UNSIGNED,
+const breedImages = sequelize.define(
+  'images',
+  {
+    breedID: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
-      comment: "null",
+      comment: 'null',
       references: {
         model: 'breedinfo',
-        key: 'breedId'
-      }
+        key: 'breedId',
+      },
     },
-    'img1': {
-      type: DataTypes.TEXT,
+    img1: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img2': {
-      type: DataTypes.TEXT,
+    img2: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img3': {
-      type: DataTypes.TEXT,
+    img3: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img4': {
-      type: DataTypes.TEXT,
+    img4: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img5': {
-      type: DataTypes.TEXT,
+    img5: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img6': {
-      type: DataTypes.TEXT,
+    img6: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img7': {
-      type: DataTypes.TEXT,
+    img7: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img8': {
-      type: DataTypes.TEXT,
+    img8: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
+      comment: 'null',
     },
-    'img9': {
-      type: DataTypes.TEXT,
+    img9: {
+      type: Sequelize.TEXT,
       allowNull: true,
-      comment: "null"
-    }
-  }, {
-    tableName: 'images'
-  });
-};
+      comment: 'null',
+    },
+  },
+  {
+    tableName: 'images',
+  }
+);
+
+module.exports = breedImages;
