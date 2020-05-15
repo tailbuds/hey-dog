@@ -1,4 +1,5 @@
 /* jshint indent: 1 */
+// empty comment
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(

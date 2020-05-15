@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "app.js"
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
   },
   "author": "AK Hanish",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

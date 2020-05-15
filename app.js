@@ -20,4 +20,4 @@ sequelize
     console.log(err);
   });
 
-server.listen(3500);
+server.listen(3600);
