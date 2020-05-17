@@ -1,18 +1,13 @@
+//Required Node Modules
 const express = require('express');
-
 const router = express.Router();
-const rootDir = require('../util/path');
-const path = require('path');
-//GETroute for "/add-breeds"
-router.get('/add-breeds', (req, res, next) => {
-  res.sendFile(path.join(rootDir, 'views', 'addBreed.html'));
-  1;
-});
 
+//Required Local Modules
+const addBreeds = require('../controllers/addBreed');
+
+//GETroute for "/add-breeds"
+router.get('/add-breeds', addBreeds.getAddBreeds);
 //POSTroute for "/add-breeds"
-router.post('/add-breeds', (req, res, next) => {
-  console.log(res.body);
-  res.redirect('/');
-});
+router.post('/add-breeds', addBreeds.postAddBreeds);
 
 module.exports = router;

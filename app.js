@@ -9,6 +9,7 @@ const cors = require('cors');
 //Local Required File
 const sequelize = require('./config/database');
 const addBreed = require('./routes/addBreeds');
+
 //----------------
 
 //To Create Models from our Database
