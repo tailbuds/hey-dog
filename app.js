@@ -4,7 +4,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
 
 //---------------
 //Local Required File
@@ -13,22 +12,22 @@ const addBreed = require('./routes/addBreeds');
 //----------------
 
 //To Create Models from our Database
-// const breedInfo = sequelize.import('breedInfo', require('./models/breedInfo'));
-// const measurementUnit = sequelize.import(
-//   'measurementUnits',
-//   require('./models/measurementUnits')
-// );
-// const countries = sequelize.import('countries', require('./models/countries'));
-// const breedImages = sequelize.import('images', require('./models/images'));
+const breedInfo = sequelize.import('breedInfo', require('./models/breedInfo'));
+const measurementUnit = sequelize.import(
+  'measurementUnits',
+  require('./models/measurementUnits')
+);
+const countries = sequelize.import('countries', require('./models/countries'));
+const breedImages = sequelize.import('images', require('./models/images'));
 
-// sequelize
-//   .sync()
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+sequelize
+  .sync()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 //end
 
