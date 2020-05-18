@@ -10,4 +10,6 @@ router.get('/add-breeds', addBreeds.getAddBreeds);
 //POSTroute for "/add-breeds"
 router.post('/add-breeds', addBreeds.postAddBreeds);
 
+router.post('/measurementUnits', addBreeds.postMeasurementUnits);
+
 module.exports = router;

@@ -12,15 +12,6 @@ const addBreed = require('./routes/addBreeds');
 
 //----------------
 
-//To Create Models from our Database
-const breedInfo = sequelize.import('breedInfo', require('./models/breedInfo'));
-const measurementUnit = sequelize.import(
-  'measurementUnits',
-  require('./models/measurementUnits')
-);
-const countries = sequelize.import('countries', require('./models/countries'));
-const breedImages = sequelize.import('images', require('./models/images'));
-
 sequelize
   .sync()
   .then((result) => {
@@ -31,8 +22,6 @@ sequelize
   });
 
 //end
-
-const server = http.createServer();
 
 let corsOptions = {
   origin: 'http://localhost:3600',
