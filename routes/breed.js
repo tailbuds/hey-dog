@@ -6,6 +6,8 @@ const router = express.Router();
 
 const multer = require('multer');
 
+const breedController = require('../controllers/breed');
+
 // Images storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -33,7 +35,7 @@ const upload = multer({
 
 // TODO: Routers
 
-// POST add breed /breed
-router.post('/', upload.array('photos', 12));
+// POST add breed /breeds
+router.post('/breeds', upload.array('photos', 12), breedController.postBreed);
 
 module.exports = router;
