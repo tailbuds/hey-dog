@@ -1,51 +1,37 @@
-//Required Node Modules
-const http = require('http');
+const path = require('path');
+
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
-//---------------
-//Local Required File
-const sequelize = require('./config/database');
-const addBreed = require('./routes/addBreeds');
+const errorController = require('./controllers/error');
+const sequelize = require('./util/database');
 
-//----------------
+// Models
+const Breed = require('./models/breed');
+const Images = require('./models/images');
+const Countries = require('./models/countries');
+const MeasurementUnit = require('./models/measurementUnit');
+
+const app = express();
+
+// TODO: Define routers
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// TODO: Setup Routers
+
+app.use(errorController.get404);
 
 sequelize
-  .sync()
+  .sync({ force: false })
   .then((result) => {
-    console.log(result);
+    console.log('Database connection established');
+    return result;
+  })
+  .then(() => {
+    app.listen(3002);
   })
   .catch((err) => {
     console.log(err);
   });
-
-//end
-
-let corsOptions = {
-  origin: 'http://localhost:3600',
-};
-
-//CRUD API's for breedInfo DB
-
-app.use(cors(corsOptions));
-
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(addBreed);
-
-// simple route
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to TailBuds.' });
-});
-
-// set port, listen for requests
-const PORT = process.env.PORT || 3600;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});

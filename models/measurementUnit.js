@@ -1,10 +1,8 @@
-/* jshint indent: 1 */
-// empty comment
 const Sequelize = require('sequelize');
 
 const sequelize = require('../config/database');
 
-const measurementUnits = sequelize.define(
+const MeasurementUnit = sequelize.define(
   'measurementUnits',
   {
     measureId: {
@@ -32,7 +30,7 @@ const measurementUnits = sequelize.define(
       field: 'measureSystem',
     },
   },
-  { timestamps: false }
+  { timestamps: false },
 );
 
-module.exports = measurementUnits;
+module.exports = MeasurementUnit;
