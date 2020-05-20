@@ -2,11 +2,12 @@ const Sequelize = require('sequelize');
 
 const sequelize = require('../config/database');
 
-const Breed = sequelize.define('breedInfo', {
+const Breed = sequelize.define('breeds', {
   breedId: {
     type: Sequelize.INTEGER(10).UNSIGNED,
     allowNull: false,
     primaryKey: true,
+    autoIncrement: true,
     field: 'breedId',
   },
   name: {

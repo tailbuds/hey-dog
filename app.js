@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
-const sequelize = require('./util/database');
+const sequelize = require('./config/database');
 
 // Models
 const Breed = require('./models/breed');
@@ -15,16 +15,23 @@ const MeasurementUnit = require('./models/measurementUnit');
 const app = express();
 
 // TODO: Define routers
+const breedRoute = require('./routes/breed');
+const countriesRoute = require('./routes/countries');
+const measurementUnitRoute = require('./routes/measurementUnit');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // TODO: Setup Routers
 
+app.use(breedRoute);
+app.use(countriesRoute);
+app.use(measurementUnitRoute);
+
 app.use(errorController.get404);
 
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then((result) => {
     console.log('Database connection established');
     return result;

@@ -2,8 +2,11 @@
 
 const Breed = require('../models/breed');
 
-// POST add breed /breeds/:breedId
-exports.postBreed = (req, res, next) => {};
+// POST add breed /breeds
+exports.postBreed = (req, res, next) => {
+  console.log(req);
+  res.json(req.body.name);
+};
 
 // GET a breed /breeds/:breedId
 exports.getBreed = (req, res, next) => {};

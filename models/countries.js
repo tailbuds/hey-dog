@@ -9,6 +9,7 @@ const Countries = sequelize.define(
       type: Sequelize.INTEGER(5).UNSIGNED,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
       field: 'countryId',
     },
     countryName: {

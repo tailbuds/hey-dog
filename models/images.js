@@ -12,10 +12,10 @@ const Images = sequelize.define(
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'breedInfo',
+        model: 'breeds',
         key: 'breedId',
       },
-      field: 'breedID',
+      field: 'breedId',
     },
     img1: {
       type: Sequelize.TEXT,
