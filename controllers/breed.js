@@ -4,8 +4,17 @@ const Breed = require('../models/breed');
 
 // POST add breed /breeds
 exports.postBreed = (req, res, next) => {
-  console.log(req);
-  res.json(req.body.name, req.file.puppyImg);
+  const fileInfo = req.files;
+  let images = [];
+  fileInfo.images.forEach((img) => {
+    images.push(img.path);
+  });
+  res.json({
+    name: req.body.name,
+    bgImg: fileInfo.bgImg[0].path,
+    puppyImg: fileInfo.puppyImg[0].path,
+    ...images,
+  });
 };
 
 // GET a breed /breeds/:breedId

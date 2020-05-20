@@ -33,14 +33,18 @@ const upload = multer({
   // fileFilter: fileFilter,
 });
 
+// ? Paste your code here...
+
 // TODO: Routers
 
 // POST add breed /breeds
 router.post(
   '/breeds',
-  upload.single('bgImg'),
-  upload.single('puppyImg'),
-  upload.array('images'),
+  upload.fields([
+    { name: 'bgImg', maxCount: 1 },
+    { name: 'puppyImg', maxCount: 1 },
+    { name: 'images', maxCount: 9 },
+  ]),
   breedController.postBreed,
 );
 
