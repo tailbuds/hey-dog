@@ -5,7 +5,7 @@ const Breed = require('../models/breed');
 // POST add breed /breeds
 exports.postBreed = (req, res, next) => {
   console.log(req);
-  res.json(req.body.name);
+  res.json(req.body.name, req.file.puppyImg);
 };
 
 // GET a breed /breeds/:breedId

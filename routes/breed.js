@@ -36,6 +36,12 @@ const upload = multer({
 // TODO: Routers
 
 // POST add breed /breeds
-router.post('/breeds', upload.single('bgImg'), breedController.postBreed);
+router.post(
+  '/breeds',
+  upload.single('bgImg'),
+  upload.single('puppyImg'),
+  upload.array('images'),
+  breedController.postBreed,
+);
 
 module.exports = router;
