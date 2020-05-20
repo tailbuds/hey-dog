@@ -37,7 +37,7 @@ sequelize
     return result;
   })
   .then(() => {
-    app.listen(3002);
+    app.listen(3333);
   })
   .catch((err) => {
     console.log(err);

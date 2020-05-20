@@ -3,9 +3,10 @@ const path = require('path');
 const express = require('express');
 
 const router = express.Router();
-const Countries = require('../controllers/countries');
+const countriesController = require('../controllers/countries');
 
 // TODO: Routers
-router.post('/add-breed', Countries.postCountry);
+router.post('/findcountries', countriesController.findOne);
+router.post('/countries', countriesController.postCountry);
 
 module.exports = router;

@@ -37,7 +37,9 @@ exports.postCountry = (req, res, next) => {
     });
 };
 
-//Find Counrty by countryName
+//Fetch all Country
+
+//Find Country by countryName
 
 exports.findOne = (req, res, next) => {
   const countryName = req.body.countryName;
@@ -56,8 +58,6 @@ exports.findOne = (req, res, next) => {
       });
     });
 };
-
-//----------
 
 // PUT update country /countries/:countryName
 exports.putCountry = (req, res, next) => {

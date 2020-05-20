@@ -1,12 +1,11 @@
 // CUD measurementUnit
 
-const MeasurementUnits = require('../models/measurementUnits');
+const MeasurementUnits = require('../models/measurementUnit');
 
 // POST add measurementUnit /measurementUnit
 exports.postMeasurementUnits = (req, res, next) => {
   console.log(req.body);
   MeasurementUnits.create({
-    measureId: req.body.measureId,
     shortName: req.body.shortName,
     longName: req.body.longName,
     measureSystem: req.body.measureSystem,
