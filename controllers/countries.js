@@ -39,12 +39,12 @@ exports.postCountry = (req, res, next) => {
 
 //Find Counrty by countryName
 
-exports.findAll = (req, res, next) => {
+exports.findOne = (req, res, next) => {
   const countryName = req.body.countryName;
-  var condition = countryName
+  const condition = countryName
     ? { countryName: { [Op.like]: `%${countryName}%` } }
     : null;
-  Countries.findAll({ where: condition })
+  Countries.findOne({ where: condition })
     .then((data) => {
       res.send(data);
     })
@@ -73,7 +73,7 @@ exports.putCountry = (req, res, next) => {
     minorUnits,
     timeZone,
   } = req.body;
-  var condition = countryName
+  const condition = countryName
     ? { countryName: { [Op.like]: `%${countryName}%` } }
     : null;
   Countries.update(
@@ -102,5 +102,27 @@ exports.putCountry = (req, res, next) => {
 
 // DELETE delete country /countries/:countryName
 exports.deleteCountry = (req, res, next) => {
-  const { countryName } = req.body;
+  const countryName = req.body.countryName;
+
+  const condition = countryName
+    ? { countryName: { [Op.like]: `%${countryName}%` } }
+    : null;
+
+  Countries.destroy({ where: condition })
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: 'Country Details Deleted Succesfully!',
+        });
+      } else {
+        res.send({
+          message: `Cannot delete Country Detail of ${countryName}. Maybe Country Details was not found!`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'Could not delete Country Details of ' + countryName,
+      });
+    });
 };

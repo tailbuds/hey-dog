@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize('tailbudsTest2', 'hanish', 'Hanish,123', {
   host: 'raynemani.ml',
   dialect: 'mysql',
-  logging: false,
+  //logging: false,
 });
 
 module.exports = sequelize;

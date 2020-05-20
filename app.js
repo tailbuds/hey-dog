@@ -31,7 +31,7 @@ app.use(measurementUnitRoute);
 app.use(errorController.get404);
 
 sequelize
-  .sync({ force: true })
+  .sync()
   .then((result) => {
     console.log('Database connection established');
     return result;
