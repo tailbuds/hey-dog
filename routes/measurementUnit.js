@@ -4,12 +4,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const measurementUnitController = require('../controllers/measurementUnit');
+const measureController = require('../controllers/measurementUnit');
 
 // TODO: Routers
-router.post(
-  '/measurement-unit',
-  measurementUnitController.postMeasurementUnits,
-);
+router.post('/measurement-unit', measureController.postMeasurementUnits);
 
 module.exports = router;

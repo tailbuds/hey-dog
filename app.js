@@ -19,7 +19,8 @@ const breedRoute = require('./routes/breed');
 const countriesRoute = require('./routes/countries');
 const measurementUnitRoute = require('./routes/measurementUnit');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'images')));
 
 // TODO: Setup Routers
