@@ -18,16 +18,11 @@ const Countries = sequelize.define(
       unique: true,
       field: 'countryName',
     },
-    dial: {
+    dialCode: {
       type: Sequelize.INTEGER(10).UNSIGNED,
       allowNull: false,
       unique: true,
-      field: 'dial',
-    },
-    languages: {
-      type: Sequelize.TEXT,
-      allowNull: true,
-      field: 'languages',
+      field: 'dialCode',
     },
     currencyName: {
       type: Sequelize.STRING(45),
@@ -44,20 +39,15 @@ const Countries = sequelize.define(
       allowNull: false,
       field: 'regionName',
     },
-    alpha2Codes: {
+    alpha2Code: {
       type: Sequelize.STRING(2),
       allowNull: false,
-      field: 'alpha2Codes',
+      field: 'alpha2Code',
     },
-    alpha3Codes: {
+    alpha3Code: {
       type: Sequelize.STRING(3),
       allowNull: false,
-      field: 'alpha3Codes',
-    },
-    numberCodes: {
-      type: Sequelize.INTEGER(11),
-      allowNull: false,
-      field: 'numberCodes',
+      field: 'alpha3Code',
     },
     currencyCode: {
       type: Sequelize.STRING(5),
@@ -68,21 +58,6 @@ const Countries = sequelize.define(
       type: Sequelize.INTEGER(3).UNSIGNED,
       allowNull: false,
       field: 'minorUnits',
-    },
-    currencyNumericCode: {
-      type: Sequelize.INTEGER(11),
-      allowNull: false,
-      field: 'currencyNumericCode',
-    },
-    countryFormalName: {
-      type: Sequelize.STRING(255),
-      allowNull: false,
-      field: 'countryFormalName',
-    },
-    countryShortName: {
-      type: Sequelize.STRING(255),
-      allowNull: false,
-      field: 'countryShortName',
     },
     timeZone: {
       type: Sequelize.STRING(5),

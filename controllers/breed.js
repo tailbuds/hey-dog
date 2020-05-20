@@ -9,6 +9,17 @@ exports.postBreed = (req, res, next) => {
   fileInfo.images.forEach((img) => {
     images.push(img.path);
   });
+
+  // TODO: Breed.create
+
+  // .then((result) => {
+
+  // }).catch((err) => {
+
+  // });;
+
+  // TODO respond as { breedCreated: 1 } with status 201
+
   res.json({
     name: req.body.name,
     bgImg: fileInfo.bgImg[0].path,
