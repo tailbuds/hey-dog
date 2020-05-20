@@ -37,6 +37,28 @@ exports.postCountry = (req, res, next) => {
     });
 };
 
+//Find Counrty by countryName
+
+exports.findAll = (req, res, next) => {
+  const countryName = req.body.countryName;
+  var condition = countryName
+    ? { countryName: { [Op.like]: `%${countryName}%` } }
+    : null;
+  Countries.findAll({ where: condition })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message ||
+          'Some error occurred while retrieving Country= ' + countryName,
+      });
+    });
+};
+
+//----------
+
 // PUT update country /countries/:countryName
 exports.putCountry = (req, res, next) => {
   const {
@@ -51,6 +73,31 @@ exports.putCountry = (req, res, next) => {
     minorUnits,
     timeZone,
   } = req.body;
+  var condition = countryName
+    ? { countryName: { [Op.like]: `%${countryName}%` } }
+    : null;
+  Countries.update(
+    {
+      countryName: countryName,
+      dialCode: dialCode,
+      currencyName: currencyName,
+      capital: capital,
+      regionName: regionName,
+      alpha2Code: alpha2Code,
+      alpha3Code: alpha3Code,
+      currencyCode: currencyCode,
+      minorUnits: minorUnits,
+      timeZone: timeZone,
+    },
+    { where: condition },
+  )
+    .then(() => {
+      res.json({ countryUpdated: 1 }).status(201);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(err).status(400);
+    });
 };
 
 // DELETE delete country /countries/:countryName
