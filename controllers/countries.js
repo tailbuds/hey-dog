@@ -112,12 +112,10 @@ exports.putCountry = (req, res, next) => {
 // DELETE delete Countries Details /countries/:countryName
 exports.deleteCountryDetails = (req, res, next) => {
   const Name = req.params.countryName;
-  Countries.findOne({
+  Countries.destroy({
     where: { countryName: Name },
+    cascade: true,
   })
-    .then((country) => {
-      country.destroy({ truncate: true, cascade: false });
-    })
     .then(() => {
       res.status(200).json({ deletedCountry: 1 });
     })
