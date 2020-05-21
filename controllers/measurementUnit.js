@@ -22,7 +22,7 @@ exports.postMeasurementUnits = (req, res, next) => {
 
 //GET find MeasurementUnit
 exports.findOne = (req, res, next) => {
-  const Name = req.body.shortName;
+  const Name = req.params.unit;
   MeasurementUnits.findOne({
     where: { shortName: Name },
     truncate: true,
@@ -55,7 +55,29 @@ exports.findAll = (req, res, next) => {
 };
 
 // PUT update measurementUnit /measurementUnit
-exports.putMeasurementUnit = (req, res, next) => {};
+exports.putMeasurementUnit = (req, res, next) => {
+  const Name = req.params.unit;
+  const shortName = req.body.shortName;
+  const longName = req.body.longName;
+  const measureSystem = req.body.measureSystem;
+  MeasurementUnits.findOne({
+    where: { shortName: Name },
+    truncate: true,
+  })
+    .then((mu) => {
+      mu.shortName = shortName;
+      mu.longName = longName;
+      mu.measureSystem = measureSystem;
+      return mu.save();
+    })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(err).status(400);
+    });
+};
 
 // DELETE delete measurementUnit /measurementUnit
 exports.deleteMeasurementUnit = (req, res, next) => {};

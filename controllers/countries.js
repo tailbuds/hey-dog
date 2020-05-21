@@ -72,7 +72,45 @@ exports.findOne = (req, res, next) => {
 };
 
 // PUT update Countries Details
-exports.putMeasurementUnit = (req, res, next) => {};
+exports.putMeasurementUnit = (req, res, next) => {
+  const Name = req.params.countryName;
+  const {
+    countryName,
+    dialCode,
+    currencyName,
+    capital,
+    regionName,
+    alpha2Code,
+    alpha3Code,
+    currencyCode,
+    minorUnits,
+    timeZone,
+  } = req.body;
+  Countries.findOne({
+    where: { countryName: Name },
+    truncate: true,
+  })
+    .then((country) => {
+      country.countryName = countryName;
+      country.dialCode = dialCode;
+      country.currencyName = currencyName;
+      country.capital = capital;
+      country.regionName = regionName;
+      country.alpha2Code = alpha2Code;
+      country.alpha3Code = alpha3Code;
+      country.currencyCode = currencyCode;
+      country.minorUnits = minorUnits;
+      country.timeZone = timeZone;
+      return country.save();
+    })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(err).status(400);
+    });
+};
 
 // DELETE delete Countries Details
 exports.deleteMeasurementUnit = (req, res, next) => {};
