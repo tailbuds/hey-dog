@@ -20,6 +20,7 @@ const countriesRoute = require('./routes/countries');
 const measurementUnitRoute = require('./routes/measurementUnit');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'images')));
 
 // TODO: Setup Routers
@@ -37,7 +38,7 @@ sequelize
     return result;
   })
   .then(() => {
-    app.listen(3333);
+    app.listen(3000);
   })
   .catch((err) => {
     console.log(err);
