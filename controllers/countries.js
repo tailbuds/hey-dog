@@ -1,8 +1,8 @@
-// CUD countries
+// CRUD countries
 
 const Countries = require('../models/countries');
 
-// POST add country /countries/:countryId
+// POST add country /countries
 exports.postCountry = (req, res, next) => {
   const {
     countryName,
@@ -29,31 +29,29 @@ exports.postCountry = (req, res, next) => {
     timeZone: timeZone,
   })
     .then(() => {
-      res.json({ countryCreated: 1 }).status(201);
+      res.status(201).json({ createdCountry: 1 });
     })
     .catch((err) => {
       console.log(err);
-      res.json(err).status(400);
+      res.status(400).json({ createdCountry: 0, reason: err });
     });
 };
 
-//Fetch all Country
-
-exports.findAll = (req, res, next) => {
+// GET all countries /countries
+exports.getCountries = (req, res, next) => {
   Countries.findAll()
     .then((data) => {
-      res.json(data);
+      res.status(200).json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || 'Some error occurred while retrieving Country',
       });
     });
 };
 
-//Find Country by countryName
-
-exports.findOne = (req, res, next) => {
+// Get a country by name /countries/:countryName
+exports.getCountryDetails = (req, res, next) => {
   const Name = req.params.countryName;
   Countries.findOne({
     where: { countryName: Name },
@@ -63,7 +61,7 @@ exports.findOne = (req, res, next) => {
       res.json(data);
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(400).json({
         message:
           err.message ||
           'Some error occurred while retrieving Country= ' + countryName,
@@ -71,8 +69,8 @@ exports.findOne = (req, res, next) => {
     });
 };
 
-// PUT update Countries Details
-exports.putCountryDetails = (req, res, next) => {
+// PUT update Countries Details /countries/:countryName
+exports.putCountry = (req, res, next) => {
   const Name = req.params.countryName;
   const {
     countryName,
@@ -88,7 +86,6 @@ exports.putCountryDetails = (req, res, next) => {
   } = req.body;
   Countries.findOne({
     where: { countryName: Name },
-    truncate: true,
   })
     .then((country) => {
       country.countryName = countryName;
@@ -103,30 +100,28 @@ exports.putCountryDetails = (req, res, next) => {
       country.timeZone = timeZone;
       return country.save();
     })
-    .then((result) => {
-      res.json(result);
+    .then(() => {
+      res.status(201).json({ updatedCountry: 1 });
     })
     .catch((err) => {
       console.log(err);
-      res.json(err).status(400);
+      res.status(400).json({ updatedCountry: 0, reason: err });
     });
 };
 
-// DELETE delete Countries Details
+// DELETE delete Countries Details /countries/:countryName
 exports.deleteCountryDetails = (req, res, next) => {
   const Name = req.params.countryName;
   Countries.findOne({
     where: { countryName: Name },
-    truncate: true,
   })
-    .then((data) => {
-      data.destroy();
-      res.json({ Message: 'Data Deleted' });
+    .then((country) => {
+      country.destroy({ truncate: true, cascade: false });
+    })
+    .then(() => {
+      res.status(200).json({ deletedCountry: 1 });
     })
     .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while Deleting Country Details.',
-      });
+      res.status(400).json({ deletedCountry: 0, reason: err });
     });
 };

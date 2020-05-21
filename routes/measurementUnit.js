@@ -1,25 +1,24 @@
-const path = require('path');
-
 const express = require('express');
-
-const router = express.Router();
 
 const measurementUnitController = require('../controllers/measurementUnit');
 
-// TODO: Routers
+const router = express.Router();
 
-router.get('/measurement-unit/:unit', measurementUnitController.findOne);
-router.get('/measurement-unit', measurementUnitController.findAll);
-router.put(
-  '/measurement-unit/:unit',
-  measurementUnitController.putMeasurementUnit,
-);
-router.post(
-  '/measurement-unit',
-  measurementUnitController.postMeasurementUnits,
-);
+// POST /measurements
+router.post('/measurements', measurementUnitController.postMeasurementUnits);
+
+// GET /measurements
+router.get('/measurements', measurementUnitController.getMeasurementUnits);
+
+// PUT /measurements/:unit
+router.put('/measurements/:unit', measurementUnitController.putMeasurementUnit);
+
+// GET /measurements/:unit
+router.get('/measurements/:unit', measurementUnitController.getMeasurementUnit);
+
+// DELETE /measurements/:unit
 router.delete(
-  '/measurement-unit/:unit',
+  '/measurements/:unit',
   measurementUnitController.deleteMeasurementUnit,
 );
 

@@ -12,16 +12,16 @@ exports.postMeasurementUnits = (req, res, next) => {
   })
     .then((mu) => {
       console.log('created measurement unit');
-      res.json({ measurementUnitCreated: 1 }).status(201);
+      res.status(201).json({ measurementUnitCreated: 1 });
     })
     .catch((err) => {
       console.log(err);
-      res.json(err).status(400);
+      res.status(400).json(err);
     });
 };
 
 //GET find MeasurementUnit
-exports.findOne = (req, res, next) => {
+exports.getMeasurementUnit = (req, res, next) => {
   const Name = req.params.unit;
   MeasurementUnits.findOne({
     where: { shortName: Name },
@@ -40,7 +40,7 @@ exports.findOne = (req, res, next) => {
 };
 
 //GET findAll Measurement Units
-exports.findAll = (req, res, next) => {
+exports.getMeasurementUnits = (req, res, next) => {
   MeasurementUnits.findAll()
     .then((data) => {
       res.json(data);
@@ -70,12 +70,12 @@ exports.putMeasurementUnit = (req, res, next) => {
       mu.measureSystem = measureSystem;
       return mu.save();
     })
-    .then((result) => {
-      res.json(result);
+    .then(() => {
+      res.status(201).json({ updatedMeasurementUnit: 1 });
     })
     .catch((err) => {
       console.log(err);
-      res.json(err).status(400);
+      res.status(400).json({ updatedMeasurementUnit: 0, reason: err });
     });
 };
 
@@ -84,16 +84,14 @@ exports.deleteMeasurementUnit = (req, res, next) => {
   const Name = req.params.unit;
   MeasurementUnits.findOne({
     where: { shortName: Name },
-    truncate: true,
   })
     .then((data) => {
-      data.destroy();
-      res.json({ Message: 'Data Deleted' });
+      data.destroy({ truncate: true, cascade: false });
+    })
+    .then(() => {
+      res.status(200).json({ deletedCountry: 1 });
     })
     .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while Deleting Measurement UNIT',
-      });
+      res.status(400).json({ deletedCountry: 0, reason: err });
     });
 };

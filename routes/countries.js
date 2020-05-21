@@ -1,18 +1,25 @@
-const path = require('path');
-
 const express = require('express');
 
-const router = express.Router();
 const countriesController = require('../controllers/countries');
 
-// TODO: Routers
-router.get('/countries/:countryName', countriesController.findOne);
-router.get('/countries', countriesController.findAll);
-router.put('/countries/:countryName', countriesController.putCountryDetails);
+const router = express.Router();
+
+// POST /countries
+router.post('/countries', countriesController.postCountry);
+
+// GET /countries
+router.get('/countries', countriesController.getCountries);
+
+// GET /countries/:countryName
+router.get('/countries/:countryName', countriesController.getCountryDetails);
+
+// PUT /countries/:countryName
+router.put('/countries/:countryName', countriesController.putCountry);
+
+// DELETE /countries/:countryName
 router.delete(
   '/countries/:countryName',
   countriesController.deleteCountryDetails,
 );
-router.post('/countries', countriesController.postCountry);
 
 module.exports = router;
