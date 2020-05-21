@@ -72,7 +72,7 @@ exports.findOne = (req, res, next) => {
 };
 
 // PUT update Countries Details
-exports.putMeasurementUnit = (req, res, next) => {
+exports.putCountryDetails = (req, res, next) => {
   const Name = req.params.countryName;
   const {
     countryName,
@@ -113,4 +113,20 @@ exports.putMeasurementUnit = (req, res, next) => {
 };
 
 // DELETE delete Countries Details
-exports.deleteMeasurementUnit = (req, res, next) => {};
+exports.deleteCountryDetails = (req, res, next) => {
+  const Name = req.params.countryName;
+  Countries.findOne({
+    where: { countryName: Name },
+    truncate: true,
+  })
+    .then((data) => {
+      data.destroy();
+      res.json({ Message: 'Data Deleted' });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || 'Some error occurred while Deleting Country Details.',
+      });
+    });
+};

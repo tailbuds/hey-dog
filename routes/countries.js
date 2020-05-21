@@ -8,6 +8,11 @@ const countriesController = require('../controllers/countries');
 // TODO: Routers
 router.get('/countries/:countryName', countriesController.findOne);
 router.get('/countries', countriesController.findAll);
-router.put('/countries/:countryName', countriesController.putMeasurementUnit);
+router.put('/countries/:countryName', countriesController.putCountryDetails);
+router.delete(
+  '/countries/:countryName',
+  countriesController.deleteCountryDetails,
+);
 router.post('/countries', countriesController.postCountry);
+
 module.exports = router;

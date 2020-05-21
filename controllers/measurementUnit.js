@@ -80,4 +80,20 @@ exports.putMeasurementUnit = (req, res, next) => {
 };
 
 // DELETE delete measurementUnit /measurementUnit
-exports.deleteMeasurementUnit = (req, res, next) => {};
+exports.deleteMeasurementUnit = (req, res, next) => {
+  const Name = req.params.unit;
+  MeasurementUnits.findOne({
+    where: { shortName: Name },
+    truncate: true,
+  })
+    .then((data) => {
+      data.destroy();
+      res.json({ Message: 'Data Deleted' });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || 'Some error occurred while Deleting Measurement UNIT',
+      });
+    });
+};

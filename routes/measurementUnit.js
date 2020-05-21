@@ -18,5 +18,9 @@ router.post(
   '/measurement-unit',
   measurementUnitController.postMeasurementUnits,
 );
+router.delete(
+  '/measurement-unit/:unit',
+  measurementUnitController.deleteMeasurementUnit,
+);
 
 module.exports = router;
