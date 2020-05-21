@@ -23,7 +23,6 @@ exports.postMeasurementUnits = (req, res, next) => {
 //GET find MeasurementUnit
 exports.findOne = (req, res, next) => {
   const Name = req.body.shortName;
-
   MeasurementUnits.findOne({
     where: { shortName: Name },
     truncate: true,
