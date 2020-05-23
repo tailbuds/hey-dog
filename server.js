@@ -133,10 +133,6 @@ Breed.belongsTo(MeasurementUnit, {
 // * Initialize sequelize and start service
 sequelize
   .sync({ force: process.env.RECREATE_DB })
-  .then((result) => {
-    console.log('Database connection established');
-    return result;
-  })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`server listening on http://${HOST}:${PORT}`);

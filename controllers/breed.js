@@ -94,7 +94,7 @@ exports.getAllBreeds = (req, res, next) => {
 // GET a breed /breeds/:breedId
 exports.getBreed = (req, res, next) => {
   Breed.findByPk(req.params.breedId, {
-    include: ['BreedImages'],
+    include: ['BreedImages', 'BreedCountry', 'BreedWeight', 'BreedHeight'],
   })
     .then((breed) => {
       res.status(200).json(breed);
@@ -338,17 +338,14 @@ exports.patchBreed = (req, res, next) => {
       break;
 
     default:
-      res.status(400).json({ updatedProduct: 0, reason: err });
+      res.status(400).json({ updatedProduct: 0, reason: `that didn't work` });
       break;
   }
 };
 
 // DELETE delete breed /breeds/:breedId
 exports.deleteBreed = (req, res, next) => {
-  Breed.findByPk(req.params.breedId)
-    .then((breed) => {
-      return breed.destroy();
-    })
+  Breed.destroy({ where: { breedId: req.params.breedId } })
     .then(() => {
       res.json({ deletedBreed: 1 }).status(200);
     })
