@@ -24,6 +24,11 @@ const MeasurementUnit = sequelize.define(
       unique: true,
       field: 'longName',
     },
+    category: {
+      type: Sequelize.STRING(45),
+      allowNull: false,
+      field: 'category',
+    },
     measureSystem: {
       type: Sequelize.STRING(135),
       allowNull: false,

@@ -1,3 +1,4 @@
 exports.get404 = (req, res, next) => {
-  res.status(404).send('<h1>Not Found</h1>');
+  console.log(req);
+  res.status(404).json('not found');
 };
