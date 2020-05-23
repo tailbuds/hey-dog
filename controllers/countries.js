@@ -1,5 +1,4 @@
 // CRUD countries
-
 const Countries = require('../models/countries');
 
 // POST add country /countries
@@ -84,22 +83,23 @@ exports.putCountry = (req, res, next) => {
     minorUnits,
     timeZone,
   } = req.body;
-  Countries.findOne({
-    where: { countryName: Name },
-  })
-    .then((country) => {
-      country.countryName = countryName;
-      country.dialCode = dialCode;
-      country.currencyName = currencyName;
-      country.capital = capital;
-      country.regionName = regionName;
-      country.alpha2Code = alpha2Code;
-      country.alpha3Code = alpha3Code;
-      country.currencyCode = currencyCode;
-      country.minorUnits = minorUnits;
-      country.timeZone = timeZone;
-      return country.save();
-    })
+  Countries.update(
+    {
+      countryName: countryName,
+      dialCode: dialCode,
+      currencyName: currencyName,
+      capital: capital,
+      regionName: regionName,
+      alpha2Code: alpha2Code,
+      alpha3Code: alpha3Code,
+      currencyCode: currencyCode,
+      minorUnits: minorUnits,
+      timeZone: timeZone,
+    },
+    {
+      where: { countryName: Name },
+    },
+  )
     .then(() => {
       res.status(201).json({ updatedCountry: 1 });
     })
@@ -111,9 +111,8 @@ exports.putCountry = (req, res, next) => {
 
 // DELETE delete Countries Details /countries/:countryName
 exports.deleteCountryDetails = (req, res, next) => {
-  const Name = req.params.countryName;
   Countries.destroy({
-    where: { countryName: Name },
+    where: { countryName: req.params.countryName },
     cascade: true,
   })
     .then(() => {

@@ -10,11 +10,11 @@ router.post('/measurements', measurementUnitController.postMeasurementUnits);
 // GET /measurements
 router.get('/measurements', measurementUnitController.getMeasurementUnits);
 
-// PUT /measurements/:unit
-router.put('/measurements/:unit', measurementUnitController.putMeasurementUnit);
-
 // GET /measurements/:unit
 router.get('/measurements/:unit', measurementUnitController.getMeasurementUnit);
+
+// PUT /measurements/:unit
+router.put('/measurements/:unit', measurementUnitController.putMeasurementUnit);
 
 // DELETE /measurements/:unit
 router.delete(

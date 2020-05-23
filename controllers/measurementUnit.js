@@ -1,45 +1,27 @@
-// CUD measurementUnit
+// CRUD measurementUnit
 
 const MeasurementUnits = require('../models/measurementUnit');
 
-// POST add measurementUnit /measurementUnit
+// POST add measurementUnit /measurements
 exports.postMeasurementUnits = (req, res, next) => {
   console.log(req.body);
   MeasurementUnits.create({
     shortName: req.body.shortName,
     longName: req.body.longName,
+    category: req.body.category,
     measureSystem: req.body.measureSystem,
   })
     .then((mu) => {
       console.log('created measurement unit');
-      res.status(201).json({ measurementUnitCreated: 1 });
+      res.status(201).json({ createdMeasurementUnit: 1 });
     })
     .catch((err) => {
       console.log(err);
-      res.status(400).json(err);
+      res.status(400).json({ createdMeasurementUnit: 0, reason: err });
     });
 };
 
-//GET find MeasurementUnit
-exports.getMeasurementUnit = (req, res, next) => {
-  const Name = req.params.unit;
-  MeasurementUnits.findOne({
-    where: { shortName: Name },
-    truncate: true,
-  })
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message ||
-          'Some error occurred while retrieving Measurement UNIT',
-      });
-    });
-};
-
-//GET findAll Measurement Units
+//GET findAll Measurement Units /measurements
 exports.getMeasurementUnits = (req, res, next) => {
   MeasurementUnits.findAll()
     .then((data) => {
@@ -54,22 +36,38 @@ exports.getMeasurementUnits = (req, res, next) => {
     });
 };
 
-// PUT update measurementUnit /measurementUnit
-exports.putMeasurementUnit = (req, res, next) => {
+//GET find a MeasurementUnit /measurements/:unit
+exports.getMeasurementUnit = (req, res, next) => {
   const Name = req.params.unit;
-  const shortName = req.body.shortName;
-  const longName = req.body.longName;
-  const measureSystem = req.body.measureSystem;
   MeasurementUnits.findOne({
     where: { shortName: Name },
-    truncate: true,
   })
-    .then((mu) => {
-      mu.shortName = shortName;
-      mu.longName = longName;
-      mu.measureSystem = measureSystem;
-      return mu.save();
+    .then((data) => {
+      res.status(200).json(data);
     })
+    .catch((err) => {
+      res.status(500).json({
+        message:
+          err.message ||
+          'Some error occurred while retrieving Measurement unit',
+      });
+    });
+};
+
+// PUT update measurementUnit /measurementUnit/:unit
+exports.putMeasurementUnit = (req, res, next) => {
+  const name = req.params.unit;
+  MeasurementUnits.update(
+    {
+      shortName: req.body.shortName,
+      longName: req.body.longName,
+      category: req.body.category,
+      measureSystem: req.body.measureSystem,
+    },
+    {
+      where: { shortName: name },
+    },
+  )
     .then(() => {
       res.status(201).json({ updatedMeasurementUnit: 1 });
     })
@@ -79,19 +77,16 @@ exports.putMeasurementUnit = (req, res, next) => {
     });
 };
 
-// DELETE delete measurementUnit /measurementUnit
+// DELETE delete measurementUnit /measurements/:unit
 exports.deleteMeasurementUnit = (req, res, next) => {
   const Name = req.params.unit;
-  MeasurementUnits.findOne({
+  MeasurementUnits.destroy({
     where: { shortName: Name },
   })
-    .then((data) => {
-      data.destroy({ truncate: true, cascade: false });
-    })
     .then(() => {
-      res.status(200).json({ deletedCountry: 1 });
+      res.status(200).json({ deletedMeasurementUnit: 1 });
     })
     .catch((err) => {
-      res.status(400).json({ deletedCountry: 0, reason: err });
+      res.status(400).json({ deletedMeasurementUnit: 0, reason: err });
     });
 };

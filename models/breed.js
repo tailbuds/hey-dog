@@ -209,17 +209,14 @@ const Breed = sequelize.define('breeds', {
     field: 'desc15',
   },
   createdAt: {
-    type: Sequelize.DATE,
+    type: 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP',
     allowNull: true,
-    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     field: 'createdAt',
   },
   updatedAt: {
-    type: Sequelize.DATE,
+    type:
+      'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
     allowNull: true,
-    defaultValue: sequelize.literal(
-      'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
-    ),
     field: 'updatedAt',
   },
 });

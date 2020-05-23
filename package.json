@@ -2,18 +2,20 @@
   "name": "breed-info",
   "version": "1.0.0",
   "description": "breeddata",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "start-server": "node app.js"
+    "start": "nodemon server.js",
+    "start-server": "node server.js"
   },
   "author": "AK Hanish",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.8"
@@ -30,6 +32,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
     "nodemon": "^2.0.4",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "sequelize-cli": "^5.5.1"
   }
 }
