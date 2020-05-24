@@ -69,10 +69,10 @@ exports.postBreed = (req, res, next) => {
       });
     })
     .then(() => {
-      res.status(201).json({ breedCreated: 1 });
+      res.status(201).json({ createdBreed: 1 });
     })
     .catch((err) => {
-      res.status(400).json({ breedCreated: 0, reason: err });
+      res.status(400).json({ createdBreed: 0, reason: err });
     });
 };
 
