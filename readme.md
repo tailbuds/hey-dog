@@ -261,8 +261,158 @@ Response
         "measureSystem": "SI"
     }
 }
+```
+
+#### PATCH: Update Breed Information
+
+```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}
+
+```-H "Accept: application/json"```
+
+Request
+
+```{json}
+{
+    "name": "Alfa",
+    "tagline": "Alfa is a good dog",
+    "minLife": 10,
+    "maxLife": 12,
+    "learningRate": "High",
+    "minLitter": 4,
+    "maxLitter": 6,
+    "size": "large",
+    "weightUnit": 2,
+    "minMaleWeight": 35,
+    "maxMaleWeight": 45,
+    "minFemaleWeight": 30,
+    "maxFemaleWeight": 45,
+    "heightUnit": 3,
+    "minMaleHeight": 20,
+    "maxMaleHeight": 25,
+    "minFemaleHeight": 20,
+    "maxFemaleHeight": 25,
+    "originCountry": 3,
+    "otherNames": "",
+    "desc1": "Amazing Dog",
+    "decs2": null,
+    "desc3": "Best Dog",
+    "desc4": null,
+    "desc5": null,
+    "desc6": null,
+    "desc7": null,
+    "desc8": null,
+    "desc9": null,
+    "desc10": null,
+    "desc11": null,
+    "desc12": null,
+    "desc13": null,
+    "desc14": null,
+    "desc15": null
+}
 
 ```
+
+| Sno. | Key             | Data-Type | Limits   | Description                                                                                     |
+|------|-----------------|-----------|----------|-------------------------------------------------------------------------------------------------|
+| 1    | name            | String    | 1-65     | Name of the Breed                                                                               |
+| 2    | tagline         | String    | 1-135    | Tagline for Breed                                                                               |
+| 3    | minLife         | INTEGER   | 1-3      | Minimum Expected Life of the Breed                                                              |
+| 4    | maxLife         | INTEGER   | 1-3      | Maximum Expected Life of the Breed                                                              |
+| 5    | learningRate    | String    | 1-25     | Learning Rate of the Breed                                                                      |
+| 6    | minLitter       | INTEGER   | 1-3      | Minimum number of expected offsprings from a single Female of the Breed in one breeding season. |
+| 7    | maxLitter       | INTEGER   | 1-3      | Maximum number of expected offsprings from a single Female of the Breed in one breeding season. |
+| 8    | size            | String    | 1-45     | Usual size of the Breed                                                                         |
+| 9    | weightUnit      | INTEGER   | 1-3      | Weight Measurement Unit of the Breed                                                            |
+| 10   | minMaleWeight   | INTEGER   | 1-5      | Minimum Male Weight of the Breed                                                                |
+| 11   | maxMaleWeight   | INTEGER   | 1-5      | Maximum Male Weight of the Breed                                                                |
+| 12   | minFemaleWeight | INTEGER   | 1-5      | Minimum Female Weight of the Breed                                                              |
+| 13   | maxFemaleWeight | INTEGER   | 1-5      | Maximum Female Weight of the Breed                                                              |
+| 14   | heigthUnit      | INTEGER   | 1-3      | Height Measurement Unit of the Breed                                                            |
+| 15   | minMaleHeight   | INTEGER   | 1-5      | Minimum Male Height of the Breed                                                                |
+| 16   | maxMaleHeight   | INTEGER   | 1-5      | Maximum Male Weight of the Breed                                                                |
+| 17   | minFemaleHeight | INTEGER   | 1-5      | Minimum Female Height of the Breed                                                              |
+| 18   | maxFemaleHeight | INTEGER   | 1-5      | Maximum Female Weight of the Breed                                                              |
+| 19   | originCountry   | INTEGER   | 1-5      | Origin Country of the Breed                                                                     |
+| 20   | otherNames      | String    | 1-255    | Alternative name of the Breed seperated by Commas.                                              |
+| 21   | desc1           | String    | 1-65,535 | Description 1 of the Breed                                                                      |
+| 22   | desc2           | String    | 1-65,535 | Description 2 of the Breed                                                                      |
+| 23   | desc3           | String    | 1-65,535 | Description 3 of the Breed                                                                      |
+| 24   | desc4           | String    | 1-65,535 | Description 4 of the Breed                                                                      |
+| 25   | desc5           | String    | 1-65,535 | Description 5 of the Breed                                                                      |
+| 26   | desc6           | String    | 1-65,535 | Description 6 of the Breed                                                                      |
+| 27   | desc7           | String    | 1-65,535 | Description 7 of the Breed                                                                      |
+| 28   | desc8           | String    | 1-65,535 | Description 8 of the Breed                                                                      |
+| 29   | desc9           | String    | 1-65,535 | Description 9 of the Breed                                                                      |
+| 30   | desc10          | String    | 1-65,535 | Description 10 of the Breed                                                                     |
+| 31   | desc11          | String    | 1-65,535 | Description 11 of the Breed                                                                     |
+| 32   | desc12          | String    | 1-65,535 | Description 12 of the Breed                                                                     |
+| 33   | desc13          | String    | 1-65,535 | Description 13 of the Breed                                                                     |
+| 34   | desc14          | String    | 1-65,535 | Description 14 of the Breed                                                                     |
+| 35   | desc15          | String    | 1-65,535 | Description 15 of the Breed                                                                     |
+
+Response
+
+```{json}
+{
+    "updatedBreed":1
+}
+
+```
+
+| Sno. | Key | Data-Type | Limits | Description |
+|------|--------------|-----------|--------|---------------------------------|
+| 1         | updatedBreed | INTEGER | 1         | 1 for Success & 0 for Failure |
+| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+
+#### PATCH: Update Breed Images
+
+```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}
+
+```-H "Accept: application/json" -H "Content-Type: multipart/form-data"```
+
+```{form-data}
+
+bgImg:(Upload Background Image File)
+puppyImg:(Upload Puppy Image File)
+img1:(Upload img1 file)
+img2:(Upload img2 file)
+img3:(Upload img3 file)
+img4:(Upload img4 file)
+img5:(Upload img5 file)
+img6:(Upload img6 file)
+img7:(Upload img7 file)
+img8:(Upload img8 file)
+img9:(Upload img9 file)
+
+```
+
+| Sno. | Key      | Data-Type | Limits    | Description                       |
+|------|----------|-----------|-----------|-----------------------------------|
+| 1    | bgImg    | JPEG/PNG  | 4MB       | One Background Image of the Breed |
+| 2    | puppyImg | JPEG/PNG  | 4MB       | One Puppy Image of the Breed      |
+| 3    | img1     | JPEG/PNG  | 4MB/Image | Add one Image for img1            |
+| 4    | img2     | JPEG/PNG  | 4MB/Image | Add one Image for img2            |
+| 5    | img3     | JPEG/PNG  | 4MB/Image | Add one Image for img3            |
+| 6    | img4     | JPEG/PNG  | 4MB/Image | Add one Image for img4            |
+| 7    | img5     | JPEG/PNG  | 4MB/Image | Add one Image for img5            |
+| 8    | img6     | JPEG/PNG  | 4MB/Image | Add one Image for img6            |
+| 9    | img7     | JPEG/PNG  | 4MB/Image | Add one Image for img7            |
+| 10   | img8     | JPEG/PNG  | 4MB/Image | Add one Image for img8            |
+| 11   | img9     | JPEG/PNG  | 4MB/Image | Add one Image for img9            |
+
+Response
+
+```{json}
+{
+    "updatedBreed":1
+}
+
+```
+
+| Sno. | Key | Data-Type | Limits | Description |
+|------|--------------|-----------|--------|---------------------------------|
+| 1         | updatedBreed | INTEGER | 1         | 1 for Success & 0 for Failure |
+| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
 
 ### Country API
 
