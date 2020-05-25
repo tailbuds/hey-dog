@@ -452,6 +452,19 @@ Request
 | 9   | minorUnits   | Integer   | 1-3           | the decimal places used to represent the minor units of the currency |
 | 10  | timeZone     | String    | 5             | the timezone of the country like "+5:30"                             |
 
+Response
+
+```{json}
+{
+    "createdCountry":1
+}
+```
+
+| Sno. | Key | Data-Type | Limits | Description |
+|------|--------------|-----------|--------|---------------------------------|
+| 1         | createdCountry | INTEGER | 1         | 1 for Success & 0 for Failure |
+| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+
 #### DELETE: Delete a Country
 
 ```-X DELETE http://localhost:3000/country/{countryId}```
@@ -527,6 +540,57 @@ Response
 
 ```
 
+#### PUT: Update a Country
+
+```-X DELETE http://localhost:3000/country/{countryId}```
+
+```-H "Accept: application/json"```
+
+Request
+
+```{json}
+{
+        "countryName": "India",
+        "dialCode": 91,
+        "currencyName": "Indian Rupee",
+        "capital": "Delhi",
+        "regionName": "Asia",
+        "alpha2Code": "IN",
+        "alpha3Code": "IND",
+        "currencyCode": "INR",
+        "minorUnits": 2,
+        "timeZone": "+5:30"
+}
+```
+
+| Sno | Key          | data type | Length Limits | Description                                                          |
+|-----|--------------|-----------|---------------|----------------------------------------------------------------------|
+| 1   | countryName  | String    | 1-135         | Name of the country                                                  |
+| 2   | dialCode     | Integer   | 1-10          | country phone dial code                                              |
+| 3   | currencyName | String    | 1-45          | Name of the currency used in the country                             |
+| 4   | capital      | String    | 1-135         | Country's capital                                                    |
+| 5   | regionName   | String    | 1-136         | Region of the country                                                |
+| 6   | alpha2Code   | String    | 2             | 2 character country code                                             |
+| 7   | alpha3Code   | String    | 3             | 3 character country code                                             |
+| 8   | currencyCode | String    | 3             | currency code of the country's currency                              |
+| 9   | minorUnits   | Integer   | 1-3           | the decimal places used to represent the minor units of the currency |
+| 10  | timeZone     | String    | 5             | the timezone of the country like "+5:30"                             |
+
+Response
+
+```{json}
+{
+    "updatedCountry":1
+
+}
+
+```
+
+| Sno. | Key | Data-Type | Limits | Description |
+|------|--------------|-----------|--------|---------------------------------|
+| 1         | updatedCountry | INTEGER | 1         | 1 for Success & 0 for Failure |
+| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+
 ### Measurement-Unit API
 
 #### POST: Add Measurement Unit
@@ -554,6 +618,19 @@ Request
 | 3    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed  |
 | 4    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                 |
 |      |                   |           |        |                                                    |
+
+Response
+
+```{json}
+{
+    "createdMeasurementUnit":1
+}
+```
+
+| Sno. | Key | Data-Type | Limits | Description |
+|------|--------------|-----------|--------|---------------------------------|
+| 1         | createdMeasurementUnit | INTEGER | 1         | 1 for Success & 0 for Failure |
+| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
 
 #### DELETE: Delete a Measurement Unit
 
@@ -621,3 +698,43 @@ Response
     "measureSystem": "SI"
 }
 ```
+
+#### PUT: Update Measurement Unit
+
+```-X POST http://localhost:3000/measurements```
+
+```-H "Accept: application/json" -H "Content-Type: application/json"```
+
+Request
+
+```{json}
+
+{
+    "shortName": "In",
+    "longName": "Inches",
+    "category": "height",
+    "measureSystem": "SI"
+}
+```
+
+| Sno. | Key               | Data-Type | Limits | Description                                        |
+|------|-------------------|-----------|--------|----------------------------------------------------|
+| 1    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                 |
+| 2    | longName          | String    | 1-20   | Long Name of the Measurement Unit                  |
+| 3    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed  |
+| 4    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                 |
+|      |                   |           |        |                                                    |
+
+Response
+
+```{json}
+{
+    "updatedMeasurementUnit": 1
+}
+
+```
+
+| Sno. | Key | Data-Type | Limits | Description |
+|------|--------------|-----------|--------|---------------------------------|
+| 1         | updatedMeasurementUnit| INTEGER | 1         | 1 for Success & 0 for Failure |
+| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
