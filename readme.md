@@ -164,7 +164,7 @@ Response
     {
         "breedId": 10,
         "name": "Alfa",
-        "puppyImg": "images\\2020-05-24T19-46-36.703Znahel-abdul-hadi-flha0KwRrRc-unsplash.jpg"
+        "puppyImg": "http://raynemani.ml:3000/images\2020-05-28T16-25-09.244Zrose-petals-693570_1920.jpg",
     }
 ]
 
@@ -243,7 +243,7 @@ Response
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}
 
-```-H "Accept: application/json" ```
+```-H "Accept: application/json"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
