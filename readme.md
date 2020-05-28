@@ -170,6 +170,12 @@ Response
 
 ```
 
+| Sno. | Key      | Data-Type | Limits | Description                  |
+|------|----------|-----------|--------|------------------------------|
+| 1    | breedID  | INTEGER   | 1-10   | Unique ID of the Breed       |
+| 2    | name     | String    | 1-65   | Name of the Breed            |
+| 3    | puppyImg | JPEG/PNG  | 4MB    | One Puppy Image of the Breed |
+
 #### GET: Get a Specific Breed
 
 ```-X GET http://localhost:3000/breeds/{breedId}```
@@ -238,6 +244,48 @@ Response
 }
 
 ```
+
+| Sno. | Key             | Data-Type | Limits    | Description                                                                                     |
+|------|-----------------|-----------|-----------|-------------------------------------------------------------------------------------------------|
+| 1    | breedID         | INTEGER   | 1-10      | Unique ID of the Breed                                                                          |
+| 2    | name            | String    | 1-65      | Name of the Breed                                                                               |
+| 3    | tagline         | String    | 1-135     | Tagline for Breed                                                                               |
+| 4    | bgImg           | JPEG/PNG  | 4MB       | One Background Image of the Breed                                                               |
+| 5    | puppyImg        | JPEG/PNG  | 4MB       | One Puppy Image of the Breed                                                                    |
+| 6    | minLife         | INTEGER   | 1-3       | Minimum Expected Life of the Breed                                                              |
+| 7    | maxLife         | INTEGER   | 1-3       | Maximum Expected Life of the Breed                                                              |
+| 8    | learningRate    | String    | 1-25      | Learning Rate of the Breed                                                                      |
+| 9    | minLitter       | INTEGER   | 1-3       | Minimum number of expected offsprings from a single Female of the Breed in one breeding season. |
+| 10   | maxLitter       | INTEGER   | 1-3       | Maximum number of expected offsprings from a single Female of the Breed in one breeding season. |
+| 11   | size            | String    | 1-45      | Usual size of the Breed                                                                         |
+| 12   | weightUnit      | INTEGER   | 1-3       | Weight Measurement Unit of the Breed                                                            |
+| 13   | minMaleWeight   | INTEGER   | 1-5       | Minimum Male Weight of the Breed                                                                |
+| 14   | maxMaleWeight   | INTEGER   | 1-5       | Maximum Male Weight of the Breed                                                                |
+| 15   | minFemaleWeight | INTEGER   | 1-5       | Minimum Female Weight of the Breed                                                              |
+| 16   | maxFemaleWeight | INTEGER   | 1-5       | Maximum Female Weight of the Breed                                                              |
+| 17   | heigthUnit      | INTEGER   | 1-3       | Height Measurement Unit of the Breed                                                            |
+| 18   | minMaleHeight   | INTEGER   | 1-5       | Minimum Male Height of the Breed                                                                |
+| 19   | maxMaleHeight   | INTEGER   | 1-5       | Maximum Male Weight of the Breed                                                                |
+| 20   | minFemaleHeight | INTEGER   | 1-5       | Minimum Female Height of the Breed                                                              |
+| 21   | maxFemaleHeight | INTEGER   | 1-5       | Maximum Female Weight of the Breed                                                              |
+| 22   | originCountry   | INTEGER   | 1-5       | Origin Country of the Breed                                                                     |
+| 23   | otherNames      | String    | 1-255     | Alternative name of the Breed seperated by Commas.                                              |
+| 24   | desc1           | String    | 1-65,535  | Description 1 of the Breed                                                                      |
+| 25   | desc2           | String    | 1-65,535  | Description 2 of the Breed                                                                      |
+| 26   | desc3           | String    | 1-65,535  | Description 3 of the Breed                                                                      |
+| 27   | desc4           | String    | 1-65,535  | Description 4 of the Breed                                                                      |
+| 28   | desc5           | String    | 1-65,535  | Description 5 of the Breed                                                                      |
+| 29   | desc6           | String    | 1-65,535  | Description 6 of the Breed                                                                      |
+| 30   | desc7           | String    | 1-65,535  | Description 7 of the Breed                                                                      |
+| 31   | desc8           | String    | 1-65,535  | Description 8 of the Breed                                                                      |
+| 32   | desc9           | String    | 1-65,535  | Description 9 of the Breed                                                                      |
+| 33   | desc10          | String    | 1-65,535  | Description 10 of the Breed                                                                     |
+| 34   | desc11          | String    | 1-65,535  | Description 11 of the Breed                                                                     |
+| 35   | desc12          | String    | 1-65,535  | Description 12 of the Breed                                                                     |
+| 36   | desc13          | String    | 1-65,535  | Description 13 of the Breed                                                                     |
+| 37   | desc14          | String    | 1-65,535  | Description 14 of the Breed                                                                     |
+| 38   | desc15          | String    | 1-65,535  | Description 15 of the Breed                                                                     |
+| 39   | BreedImages     | JPEG/PNG  | 4MB/Image | Multiple Images  of the Breed upto 9 Images                                                     |
 
 #### PATCH: Update Breed Information
 
@@ -495,6 +543,20 @@ Response
 
 ```
 
+| Sno | Key          | data type | Length Limits | Description                                                          |
+|-----|--------------|-----------|---------------|----------------------------------------------------------------------|
+| 1   | countryId    | INTEGER   | 1-10          | Unique ID of country                                                 |
+| 2   | countryName  | String    | 1-135         | Name of the country                                                  |
+| 3   | dialCode     | Integer   | 1-10          | country phone dial code                                              |
+| 4   | currencyName | String    | 1-45          | Name of the currency used in the country                             |
+| 5   | capital      | String    | 1-135         | Country's capital                                                    |
+| 6   | regionName   | String    | 1-136         | Region of the country                                                |
+| 7   | alpha2Code   | String    | 2             | 2 character country code                                             |
+| 8   | alpha3Code   | String    | 3             | 3 character country code                                             |
+| 9   | currencyCode | String    | 3             | currency code of the country's currency                              |
+| 10  | minorUnits   | Integer   | 1-3           | the decimal places used to represent the minor units of the currency |
+| 11  | timeZone     | String    | 5             | the timezone of the country like "+5:30"                             |
+
 #### GET: Get a Specific Country
 
 ```-X GET http://localhost:3000/countries/{countryId}```
@@ -522,6 +584,20 @@ Response
 }
 
 ```
+
+| Sno | Key          | data type | Length Limits | Description                                                          |
+|-----|--------------|-----------|---------------|----------------------------------------------------------------------|
+| 1   | countryId    | INTEGER   | 1-10          | Unique ID of country                                                 |
+| 2   | countryName  | String    | 1-135         | Name of the country                                                  |
+| 3   | dialCode     | Integer   | 1-10          | country phone dial code                                              |
+| 4   | currencyName | String    | 1-45          | Name of the currency used in the country                             |
+| 5   | capital      | String    | 1-135         | Country's capital                                                    |
+| 6   | regionName   | String    | 1-136         | Region of the country                                                |
+| 7   | alpha2Code   | String    | 2             | 2 character country code                                             |
+| 8   | alpha3Code   | String    | 3             | 3 character country code                                             |
+| 9   | currencyCode | String    | 3             | currency code of the country's currency                              |
+| 10  | minorUnits   | Integer   | 1-3           | the decimal places used to represent the minor units of the currency |
+| 11  | timeZone     | String    | 5             | the timezone of the country like "+5:30"                             |
 
 #### PUT: Update a Country
 
@@ -668,6 +744,14 @@ Response
 
 ```
 
+| Sno. | Key               | Data-Type | Limits | Description                                       |
+|------|-------------------|-----------|--------|---------------------------------------------------|
+| 1    | measureId         | INTEGER   | 1-10   | Unique ID of the Measurement Unit                 |
+| 2    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                |
+| 3    | longName          | String    | 1-20   | Long Name of the Measurement Unit                 |
+| 4    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed |
+| 5    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                |
+
 #### GET: Get a Specific Measurement Units
 
 ```-X GET http://localhost:3000/measurement/{shortName}```
@@ -687,6 +771,14 @@ Response
     "measureSystem": "SI"
 }
 ```
+
+| Sno. | Key               | Data-Type | Limits | Description                                       |
+|------|-------------------|-----------|--------|---------------------------------------------------|
+| 1    | measureId         | INTEGER   | 1-10   | Unique ID of the Measurement Unit                 |
+| 2    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                |
+| 3    | longName          | String    | 1-20   | Long Name of the Measurement Unit                 |
+| 4    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed |
+| 5    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                |
 
 #### PUT: Update Measurement Unit
 
