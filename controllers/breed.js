@@ -82,6 +82,16 @@ exports.getAllBreeds = (req, res, next) => {
     attributes: ['breedId', 'name', 'puppyImg'],
   })
     .then((breed) => {
+      //breed[*].puppyImg = `${process.env.DEV_SERVER_NAME} ${breed.puppyImg}`;
+      //var objLength = 2;
+      // breed.forEach((i) => {
+      //   console.log(i.puppyImg);
+      //   i.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${i.puppyImg}`;
+      breed.map((images) => {
+        console.log(images);
+        images.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${images.puppyImg}`;
+      });
+
       res.status(200).json(breed);
     })
     .catch((err) => {
