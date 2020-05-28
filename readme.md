@@ -241,7 +241,7 @@ Response
 
 #### PATCH: Update Breed Information
 
-```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}
+```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
 ```-H "Accept: application/json"```
 
