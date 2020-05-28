@@ -7,7 +7,7 @@ const Images = require('../models/images');
 exports.postBreed = (req, res, next) => {
   const fileInfo = req.files;
   let images = [];
-  fileInfo.images.forEach((img) => {
+  fileInfo.images.map((img) => {
     images.push(img.path);
   });
 
@@ -81,18 +81,14 @@ exports.getAllBreeds = (req, res, next) => {
   Breed.findAll({
     attributes: ['breedId', 'name', 'puppyImg'],
   })
-    .then((breed) => {
-      //breed[*].puppyImg = `${process.env.DEV_SERVER_NAME} ${breed.puppyImg}`;
-      //var objLength = 2;
-      // breed.forEach((i) => {
-      //   console.log(i.puppyImg);
-      //   i.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${i.puppyImg}`;
-      breed.map((images) => {
-        console.log(images);
-        images.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${images.puppyImg}`;
+    .then((breeds) => {
+      breeds.map((breed) => {
+        breed.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.puppyImg}`;
       });
-
-      res.status(200).json(breed);
+      return breeds;
+    })
+    .then((breeds) => {
+      res.status(200).json(breeds);
     })
     .catch((err) => {
       res.status(400).json({
@@ -107,6 +103,22 @@ exports.getBreed = (req, res, next) => {
     include: ['BreedImages', 'BreedCountry', 'BreedWeight', 'BreedHeight'],
   })
     .then((breed) => {
+      breed.bgImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.bgImg}`;
+      breed.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.puppyImg}`;
+      let images = breed.BreedImages.dataValues;
+      breed.originCountry = breed.BreedCountry.dataValues.countryName;
+      breed.weightUnit = breed.BreedWeight.shortName;
+      breed.heightUnit = breed.BreedHeight.shortName;
+      Object.keys(images).map((key) => {
+        if (images[key] != null && !Number.isInteger(images[key])) {
+          images[
+            key
+          ] = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${images[key]}`;
+        }
+      });
+      delete breed.dataValues.BreedCountry;
+      delete breed.dataValues.BreedHeight;
+      delete breed.dataValues.BreedWeight;
       res.status(200).json(breed);
     })
     .catch((err) => {
