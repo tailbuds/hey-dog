@@ -176,33 +176,35 @@ Response
 
 ```-H "Accept: application/json"```
 
+NOTE: breedId is the ID of the breed which is to be passed in the URL.
+
 Response
 
 ```{json}
 
 {
-    "breedId": 10,
-    "name": "Alfa",
+    "breedId": 19,
+    "name": "Gama",
     "tagline": "Alfa is a good dog",
-    "bgImg": "images\\2020-05-24T19-46-36.702Zcropped-1400-425-587777.png",
-    "puppyImg": "images\\2020-05-24T19-46-36.703Znahel-abdul-hadi-flha0KwRrRc-unsplash.jpg",
+    "bgImg": "http://raynemani.ml:3000/images\\2020-05-28T16-25-09.242Zimagination-3685048_1280.png",
+    "puppyImg": "http://raynemani.ml:3000/images\\2020-05-28T16-25-09.244Zrose-petals-693570_1920.jpg",
     "minLife": 10,
     "maxLife": 12,
     "learningRate": "High",
     "minLitter": 4,
     "maxLitter": 6,
     "size": "large",
-    "weightUnit": 2,
+    "weightUnit": "Kgs",
     "minMaleWeight": 35,
     "maxMaleWeight": 45,
     "minFemaleWeight": 30,
     "maxFemaleWeight": 45,
-    "heightUnit": 3,
+    "heightUnit": "In",
     "minMaleHeight": 20,
     "maxMaleHeight": 25,
     "minFemaleHeight": 20,
     "maxFemaleHeight": 25,
-    "originCountry": 3,
+    "originCountry": "India",
     "otherNames": "",
     "desc1": "Amazing Dog",
     "decs2": null,
@@ -219,55 +221,31 @@ Response
     "desc13": null,
     "desc14": null,
     "desc15": null,
-    "createdAt": "2020-05-24T19:46:37.000Z",
-    "updatedAt": "2020-05-24T19:46:37.000Z",
+    "createdAt": "2020-05-28T16:25:09.000Z",
+    "updatedAt": "2020-05-28T16:25:09.000Z",
     "BreedImages": {
-        "breedId": 10,
-        "img1": "images\\2020-05-24T19-46-36.715ZWhatsApp+Image+2020-03-01+at+8.25.12+PM+(2).jpeg",
-        "img2": "images\\2020-05-24T19-46-36.717ZWhatsApp+Image+2020-03-01+at+8.25.12+PM+(1).jpeg",
-        "img3": "images\\2020-05-24T19-46-36.719ZWhatsApp+Image+2020-03-01+at+8.25.12+PM.jpeg",
-        "img4": "images\\2020-05-24T19-46-36.721ZWhatsApp+Image+2020-03-01+at+8.25.09+PM.jpeg",
-        "img5": "images\\2020-05-24T19-46-36.723ZWhatsApp+Image+2020-03-01+at+8.25.13+PM.jpeg",
+        "breedId": 19,
+        "img1": "http://raynemani.ml:3000/images\\2020-05-28T16-25-09.275Zp25.jpg",
+        "img2": "http://raynemani.ml:3000/images\\2020-05-28T16-25-09.278Zlog.jpg",
+        "img3": "http://raynemani.ml:3000/images\\2020-05-28T16-25-09.330Zvivah.png",
+        "img4": null,
+        "img5": null,
         "img6": null,
         "img7": null,
         "img8": null,
         "img9": null
-    },
-    "BreedCountry": {
-        "countryId": 3,
-        "countryName": "INDIA",
-        "dialCode": 91,
-        "currencyName": "Indian Rupee",
-        "capital": "Delhi",
-        "regionName": "Asia",
-        "alpha2Code": "IN",
-        "alpha3Code": "IND",
-        "currencyCode": "INR",
-        "minorUnits": 2,
-        "timeZone": "+5:30"
-    },
-    "BreedWeight": {
-        "measureId": 2,
-        "shortName": "Kgs",
-        "longName": "Kilograms",
-        "category": "Weight",
-        "measureSystem": "SI"
-    },
-    "BreedHeight": {
-        "measureId": 3,
-        "shortName": "In",
-        "longName": "Inches",
-        "category": "height",
-        "measureSystem": "SI"
     }
 }
+
 ```
 
 #### PATCH: Update Breed Information
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" ```
+
+NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
 Request
 
@@ -366,9 +344,11 @@ Response
 
 #### PATCH: Update Breed Images
 
-```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}
+```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
 ```-H "Accept: application/json" -H "Content-Type: multipart/form-data"```
+
+NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
 ```{form-data}
 
@@ -471,6 +451,8 @@ Response
 
 ```-H "Accept: application/json"```
 
+NOTE: countryId is the ID of the country which is to be passed in the URL.
+
 Response
 
 ```{json}
@@ -478,7 +460,6 @@ Response
     "deletedCountry":1
 
 }
-
 ```
 
 | Sno. | Key | Data-Type | Limits | Description |
@@ -520,6 +501,8 @@ Response
 
 ```-H "Accept: application/json"```
 
+NOTE: countryId is the ID of the country which is to be passed in the URL.
+
 Response
 
 ```{json}
@@ -545,6 +528,8 @@ Response
 ```-X DELETE http://localhost:3000/country/{countryId}```
 
 ```-H "Accept: application/json"```
+
+NOTE: countryId is the ID of the country which is to be passed in the URL.
 
 Request
 
@@ -638,6 +623,8 @@ Response
 
 ```-H "Accept: application/json"```
 
+NOTE: shortName is the shortName of the measurementUnit which is to be passed in the URL.
+
 Response
 
 ```{json}
@@ -686,6 +673,8 @@ Response
 ```-X GET http://localhost:3000/measurement/{shortName}```
 
 ```-H "Accept: application/json"```
+
+NOTE: shortName is the shortName of the measurementUnit which is to be passed in the URL.
 
 Response
 
