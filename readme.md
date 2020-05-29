@@ -1,6 +1,21 @@
-# Table of Content
-
 # Hey Dogs - TailBuds
+
+## Table of Content
+
+- [Hey Dogs - TailBuds](#hey-dogs---tailbuds)
+  - [Table of Content](#table-of-content)
+  - [Setup](#setup)
+    - [1. Clone this repository](#1-clone-this-repository)
+    - [3. Start NODE Server](#3-start-node-server)
+      - [GET: Get all breeds](#get-get-all-breeds)
+      - [PATCH: Update Breed Information](#patch-update-breed-information)
+      - [PATCH: Update Breed Images](#patch-update-breed-images)
+    - [Country API](#country-api)
+      - [POST: Add Countries](#post-add-countries)
+      - [DELETE: Delete a Country](#delete-delete-a-country)
+      - [GET: Get a Specific Country](#get-get-a-specific-country)
+      - [GET: Get all Measurement Units](#get-get-all-measurement-units)
+      - [PUT: Update Measurement Unit](#put-update-measurement-unit)
 
 ## Setup
 
@@ -76,7 +91,7 @@ images:(Upload upto 9 Images)
 ```
 
 | Sno. | Key             | Data-Type | Limits    | Description                                                                                     |
-|------|-----------------|-----------|-----------|-------------------------------------------------------------------------------------------------|
+| ---- | --------------- | --------- | --------- | ----------------------------------------------------------------------------------------------- |
 | 1    | name            | String    | 1-65      | Name of the Breed                                                                               |
 | 2    | tagline         | String    | 1-135     | Tagline for Breed                                                                               |
 | 3    | bgImg           | JPEG/PNG  | 4MB       | One Background Image of the Breed                                                               |
@@ -114,7 +129,7 @@ images:(Upload upto 9 Images)
 | 35   | desc13          | String    | 1-65,535  | Description 13 of the Breed                                                                     |
 | 36   | desc14          | String    | 1-65,535  | Description 14 of the Breed                                                                     |
 | 37   | desc15          | String    | 1-65,535  | Description 15 of the Breed                                                                     |
-| 38   | images          | JPEG/PNG  | 4MB/Image | Multiple Images  of the Breed upto 9 Images
+| 38   | images          | JPEG/PNG  | 4MB/Image | Multiple Images  of the Breed upto 9 Images                                                     |
 
 Response
 
@@ -124,10 +139,10 @@ Response
 }
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | createdBreed | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key          | Data-Type | Limits | Description                     |
+| ---- | ------------ | --------- | ------ | ------------------------------- |
+| 1    | createdBreed | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason       | JSON      | NA     | Returns Reason for Failure ONLY |
 
 #### DELETE: Delete a Breed
 
@@ -145,10 +160,10 @@ Response
 }
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | deletedBreed | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key          | Data-Type | Limits | Description                     |
+| ---- | ------------ | --------- | ------ | ------------------------------- |
+| 1    | deletedBreed | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason       | JSON      | NA     | Returns Reason for Failure ONLY |
 
 #### GET: Get all breeds
 
@@ -171,7 +186,7 @@ Response
 ```
 
 | Sno. | Key      | Data-Type | Limits | Description                  |
-|------|----------|-----------|--------|------------------------------|
+| ---- | -------- | --------- | ------ | ---------------------------- |
 | 1    | breedID  | INTEGER   | 1-10   | Unique ID of the Breed       |
 | 2    | name     | String    | 1-65   | Name of the Breed            |
 | 3    | puppyImg | JPEG/PNG  | 4MB    | One Puppy Image of the Breed |
@@ -246,7 +261,7 @@ Response
 ```
 
 | Sno. | Key             | Data-Type | Limits    | Description                                                                                     |
-|------|-----------------|-----------|-----------|-------------------------------------------------------------------------------------------------|
+| ---- | --------------- | --------- | --------- | ----------------------------------------------------------------------------------------------- |
 | 1    | breedID         | INTEGER   | 1-10      | Unique ID of the Breed                                                                          |
 | 2    | name            | String    | 1-65      | Name of the Breed                                                                               |
 | 3    | tagline         | String    | 1-135     | Tagline for Breed                                                                               |
@@ -339,7 +354,7 @@ Request
 ```
 
 | Sno. | Key             | Data-Type | Limits   | Description                                                                                     |
-|------|-----------------|-----------|----------|-------------------------------------------------------------------------------------------------|
+| ---- | --------------- | --------- | -------- | ----------------------------------------------------------------------------------------------- |
 | 1    | name            | String    | 1-65     | Name of the Breed                                                                               |
 | 2    | tagline         | String    | 1-135    | Tagline for Breed                                                                               |
 | 3    | minLife         | INTEGER   | 1-3      | Minimum Expected Life of the Breed                                                              |
@@ -385,10 +400,10 @@ Response
 
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | updatedBreed | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key          | Data-Type | Limits | Description                     |
+| ---- | ------------ | --------- | ------ | ------------------------------- |
+| 1    | updatedBreed | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason       | JSON      | NA     | Returns Reason for Failure ONLY |
 
 #### PATCH: Update Breed Images
 
@@ -415,7 +430,7 @@ img9:(Upload img9 file)
 ```
 
 | Sno. | Key      | Data-Type | Limits    | Description                       |
-|------|----------|-----------|-----------|-----------------------------------|
+| ---- | -------- | --------- | --------- | --------------------------------- |
 | 1    | bgImg    | JPEG/PNG  | 4MB       | One Background Image of the Breed |
 | 2    | puppyImg | JPEG/PNG  | 4MB       | One Puppy Image of the Breed      |
 | 3    | img1     | JPEG/PNG  | 4MB/Image | Add one Image for img1            |
@@ -437,10 +452,10 @@ Response
 
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | updatedBreed | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key          | Data-Type | Limits | Description                     |
+| ---- | ------------ | --------- | ------ | ------------------------------- |
+| 1    | updatedBreed | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason       | JSON      | NA     | Returns Reason for Failure ONLY |
 
 ### Country API
 
@@ -468,7 +483,7 @@ Request
 ```
 
 | Sno | Key          | data type | Length Limits | Description                                                          |
-|-----|--------------|-----------|---------------|----------------------------------------------------------------------|
+| --- | ------------ | --------- | ------------- | -------------------------------------------------------------------- |
 | 1   | countryName  | String    | 1-135         | Name of the country                                                  |
 | 2   | dialCode     | Integer   | 1-10          | country phone dial code                                              |
 | 3   | currencyName | String    | 1-45          | Name of the currency used in the country                             |
@@ -488,10 +503,10 @@ Response
 }
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | createdCountry | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key            | Data-Type | Limits | Description                     |
+| ---- | -------------- | --------- | ------ | ------------------------------- |
+| 1    | createdCountry | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason         | JSON      | NA     | Returns Reason for Failure ONLY |
 
 #### DELETE: Delete a Country
 
@@ -510,10 +525,10 @@ Response
 }
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | deletedCountry | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key            | Data-Type | Limits | Description                     |
+| ---- | -------------- | --------- | ------ | ------------------------------- |
+| 1    | deletedCountry | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason         | JSON      | NA     | Returns Reason for Failure ONLY |
 
 #### GET: Get all Countries
 
@@ -544,7 +559,7 @@ Response
 ```
 
 | Sno | Key          | data type | Length Limits | Description                                                          |
-|-----|--------------|-----------|---------------|----------------------------------------------------------------------|
+| --- | ------------ | --------- | ------------- | -------------------------------------------------------------------- |
 | 1   | countryId    | INTEGER   | 1-10          | Unique ID of country                                                 |
 | 2   | countryName  | String    | 1-135         | Name of the country                                                  |
 | 3   | dialCode     | Integer   | 1-10          | country phone dial code                                              |
@@ -586,7 +601,7 @@ Response
 ```
 
 | Sno | Key          | data type | Length Limits | Description                                                          |
-|-----|--------------|-----------|---------------|----------------------------------------------------------------------|
+| --- | ------------ | --------- | ------------- | -------------------------------------------------------------------- |
 | 1   | countryId    | INTEGER   | 1-10          | Unique ID of country                                                 |
 | 2   | countryName  | String    | 1-135         | Name of the country                                                  |
 | 3   | dialCode     | Integer   | 1-10          | country phone dial code                                              |
@@ -625,7 +640,7 @@ Request
 ```
 
 | Sno | Key          | data type | Length Limits | Description                                                          |
-|-----|--------------|-----------|---------------|----------------------------------------------------------------------|
+| --- | ------------ | --------- | ------------- | -------------------------------------------------------------------- |
 | 1   | countryName  | String    | 1-135         | Name of the country                                                  |
 | 2   | dialCode     | Integer   | 1-10          | country phone dial code                                              |
 | 3   | currencyName | String    | 1-45          | Name of the currency used in the country                             |
@@ -647,10 +662,10 @@ Response
 
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | updatedCountry | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key            | Data-Type | Limits | Description                     |
+| ---- | -------------- | --------- | ------ | ------------------------------- |
+| 1    | updatedCountry | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason         | JSON      | NA     | Returns Reason for Failure ONLY |
 
 ### Measurement-Unit API
 
@@ -672,13 +687,13 @@ Request
 }
 ```
 
-| Sno. | Key               | Data-Type | Limits | Description                                        |
-|------|-------------------|-----------|--------|----------------------------------------------------|
-| 1    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                 |
-| 2    | longName          | String    | 1-20   | Long Name of the Measurement Unit                  |
-| 3    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed  |
-| 4    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                 |
-|      |                   |           |        |                                                    |
+| Sno. | Key               | Data-Type | Limits | Description                                       |
+| ---- | ----------------- | --------- | ------ | ------------------------------------------------- |
+| 1    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                |
+| 2    | longName          | String    | 1-20   | Long Name of the Measurement Unit                 |
+| 3    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed |
+| 4    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                |
+|      |                   |           |        |                                                   |
 
 Response
 
@@ -688,10 +703,10 @@ Response
 }
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | createdMeasurementUnit | INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key                    | Data-Type | Limits | Description                     |
+| ---- | ---------------------- | --------- | ------ | ------------------------------- |
+| 1    | createdMeasurementUnit | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason                 | JSON      | NA     | Returns Reason for Failure ONLY |
 
 #### DELETE: Delete a Measurement Unit
 
@@ -710,10 +725,10 @@ Response
 
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | deletedMeasurementUnit| INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key                    | Data-Type | Limits | Description                     |
+| ---- | ---------------------- | --------- | ------ | ------------------------------- |
+| 1    | deletedMeasurementUnit | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason                 | JSON      | NA     | Returns Reason for Failure ONLY |
 
 #### GET: Get all Measurement Units
 
@@ -745,7 +760,7 @@ Response
 ```
 
 | Sno. | Key               | Data-Type | Limits | Description                                       |
-|------|-------------------|-----------|--------|---------------------------------------------------|
+| ---- | ----------------- | --------- | ------ | ------------------------------------------------- |
 | 1    | measureId         | INTEGER   | 1-10   | Unique ID of the Measurement Unit                 |
 | 2    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                |
 | 3    | longName          | String    | 1-20   | Long Name of the Measurement Unit                 |
@@ -773,7 +788,7 @@ Response
 ```
 
 | Sno. | Key               | Data-Type | Limits | Description                                       |
-|------|-------------------|-----------|--------|---------------------------------------------------|
+| ---- | ----------------- | --------- | ------ | ------------------------------------------------- |
 | 1    | measureId         | INTEGER   | 1-10   | Unique ID of the Measurement Unit                 |
 | 2    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                |
 | 3    | longName          | String    | 1-20   | Long Name of the Measurement Unit                 |
@@ -798,13 +813,13 @@ Request
 }
 ```
 
-| Sno. | Key               | Data-Type | Limits | Description                                        |
-|------|-------------------|-----------|--------|----------------------------------------------------|
-| 1    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                 |
-| 2    | longName          | String    | 1-20   | Long Name of the Measurement Unit                  |
-| 3    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed  |
-| 4    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                 |
-|      |                   |           |        |                                                    |
+| Sno. | Key               | Data-Type | Limits | Description                                       |
+| ---- | ----------------- | --------- | ------ | ------------------------------------------------- |
+| 1    | shortName         | String    | 1-3    | Short Name of the Measurement Unit                |
+| 2    | longName          | String    | 1-20   | Long Name of the Measurement Unit                 |
+| 3    | category          | String    | 1-45   | Cateogry of the Measurement Unit, Eg: Light,Speed |
+| 4    | measurementSystem | String    | 1-135  | Measurement System Eg: SI/Imperial                |
+|      |                   |           |        |                                                   |
 
 Response
 
@@ -815,7 +830,7 @@ Response
 
 ```
 
-| Sno. | Key | Data-Type | Limits | Description |
-|------|--------------|-----------|--------|---------------------------------|
-| 1         | updatedMeasurementUnit| INTEGER | 1         | 1 for Success & 0 for Failure |
-| 2                   | reason | JSON | NA | Returns Reason for Failure ONLY |
+| Sno. | Key                    | Data-Type | Limits | Description                     |
+| ---- | ---------------------- | --------- | ------ | ------------------------------- |
+| 1    | updatedMeasurementUnit | INTEGER   | 1      | 1 for Success & 0 for Failure   |
+| 2    | reason                 | JSON      | NA     | Returns Reason for Failure ONLY |

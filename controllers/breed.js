@@ -179,7 +179,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -195,7 +195,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -211,7 +211,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -227,7 +227,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -243,7 +243,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -259,7 +259,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -275,7 +275,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -291,7 +291,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -307,7 +307,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -323,7 +323,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -339,7 +339,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -355,12 +355,12 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
     default:
-      res.status(400).json({ updatedProduct: 0, reason: `that didn't work` });
+      res.status(400).json({ updatedBreed: 0, reason: `that didn't work` });
       break;
   }
 };
