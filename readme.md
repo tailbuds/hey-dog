@@ -1,37 +1,20 @@
 # Hey Dogs - TailBuds
 
-## Table of Content
-
-- [Hey Dogs - TailBuds](#hey-dogs---tailbuds)
-  - [Table of Content](#table-of-content)
-  - [Setup](#setup)
-    - [1. Clone this repository](#1-clone-this-repository)
-    - [3. Start NODE Server](#3-start-node-server)
-      - [GET: Get all breeds](#get-get-all-breeds)
-      - [PATCH: Update Breed Information](#patch-update-breed-information)
-      - [PATCH: Update Breed Images](#patch-update-breed-images)
-    - [Country API](#country-api)
-      - [POST: Add Countries](#post-add-countries)
-      - [DELETE: Delete a Country](#delete-delete-a-country)
-      - [GET: Get a Specific Country](#get-get-a-specific-country)
-      - [GET: Get all Measurement Units](#get-get-all-measurement-units)
-      - [PUT: Update Measurement Unit](#put-update-measurement-unit)
-
 ## Setup
 
-### 1. Clone this repository
+### Clone this repository
 
 ```{sh}
 git clone https://github.com/tailbuds/hey-dog.git
 ```
 
-### 2. Install
+### Install node modules
 
 ```{sh}
 npm install
 ```
 
-### 3. Start NODE Server
+### Start NODE Server
 
 ```{sh}
 npm start
