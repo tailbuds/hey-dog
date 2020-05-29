@@ -6,6 +6,7 @@ const multer = require('multer');
 
 const breedController = require('../controllers/breed');
 
+const maxSize = 1024 * 1024 * 4;
 // Images storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,6 +33,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
+  limits: { fileSize: maxSize },
 });
 
 // POST add breed /breeds

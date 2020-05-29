@@ -14,6 +14,13 @@ git clone https://github.com/tailbuds/hey-dog.git
 npm install
 ```
 
+Get linting and formatter dependencies
+
+```{sh}
+npm i -D eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-plugin-node eslint-config-node
+npx install-peerdeps --dev eslint-config-airbnb
+```
+
 ### Start NODE Server
 
 ```{sh}
