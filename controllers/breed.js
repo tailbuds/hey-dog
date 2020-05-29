@@ -7,7 +7,7 @@ const Images = require('../models/images');
 exports.postBreed = (req, res, next) => {
   const fileInfo = req.files;
   let images = [];
-  fileInfo.images.forEach((img) => {
+  fileInfo.images.map((img) => {
     images.push(img.path);
   });
 
@@ -69,10 +69,10 @@ exports.postBreed = (req, res, next) => {
       });
     })
     .then(() => {
-      res.status(201).json({ breedCreated: 1 });
+      res.status(201).json({ createdBreed: 1 });
     })
     .catch((err) => {
-      res.status(400).json({ breedCreated: 0, reason: err });
+      res.status(400).json({ createdBreed: 0, reason: err });
     });
 };
 
@@ -81,8 +81,14 @@ exports.getAllBreeds = (req, res, next) => {
   Breed.findAll({
     attributes: ['breedId', 'name', 'puppyImg'],
   })
-    .then((breed) => {
-      res.status(200).json(breed);
+    .then((breeds) => {
+      breeds.map((breed) => {
+        breed.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.puppyImg}`;
+      });
+      return breeds;
+    })
+    .then((breeds) => {
+      res.status(200).json(breeds);
     })
     .catch((err) => {
       res.status(400).json({
@@ -97,6 +103,22 @@ exports.getBreed = (req, res, next) => {
     include: ['BreedImages', 'BreedCountry', 'BreedWeight', 'BreedHeight'],
   })
     .then((breed) => {
+      breed.bgImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.bgImg}`;
+      breed.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.puppyImg}`;
+      let images = breed.BreedImages.dataValues;
+      breed.originCountry = breed.BreedCountry.dataValues.countryName;
+      breed.weightUnit = breed.BreedWeight.shortName;
+      breed.heightUnit = breed.BreedHeight.shortName;
+      Object.keys(images).map((key) => {
+        if (images[key] != null && !Number.isInteger(images[key])) {
+          images[
+            key
+          ] = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${images[key]}`;
+        }
+      });
+      delete breed.dataValues.BreedCountry;
+      delete breed.dataValues.BreedHeight;
+      delete breed.dataValues.BreedWeight;
       res.status(200).json(breed);
     })
     .catch((err) => {
@@ -157,7 +179,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -173,7 +195,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -189,7 +211,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -205,7 +227,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -221,7 +243,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -237,7 +259,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -253,7 +275,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -269,7 +291,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -285,7 +307,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -301,7 +323,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -317,7 +339,7 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
@@ -333,12 +355,12 @@ exports.patchBreed = (req, res, next) => {
           res.status(200).json({ updatedBreed: 1 });
         })
         .catch((err) => {
-          res.status(400).json({ updatedProduct: 0, reason: err });
+          res.status(400).json({ updatedBreed: 0, reason: err });
         });
       break;
 
     default:
-      res.status(400).json({ updatedProduct: 0, reason: `that didn't work` });
+      res.status(400).json({ updatedBreed: 0, reason: `that didn't work` });
       break;
   }
 };
