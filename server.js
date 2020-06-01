@@ -10,6 +10,7 @@ require('dotenv').config();
 
 let HOST;
 let PORT;
+
 if (process.env.NODE_ENV === 'development') {
   HOST = process.env.DEV_APP_HOST;
   PORT = process.env.DEV_APP_PORT;
