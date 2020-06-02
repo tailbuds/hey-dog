@@ -16,14 +16,14 @@ router.post(
 // GET /measurements
 router.get(
   '/measurements',
-  isAuth.headCheck,
+  ,
   measurementUnitController.getMeasurementUnits,
 );
 
 // GET /measurements/:unit
 router.get(
   '/measurements/:unit',
-  isAuth.headCheck,
+  
   measurementUnitController.getMeasurementUnit,
 );
 

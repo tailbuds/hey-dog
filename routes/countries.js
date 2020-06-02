@@ -10,12 +10,12 @@ const isAuth = require('../controllers/auth');
 router.post('/countries', isAuth.headCheck, countriesController.postCountry);
 
 // GET /countries
-router.get('/countries', isAuth.headCheck, countriesController.getCountries);
+router.get('/countries', countriesController.getCountries);
 
 // GET /countries/:countryName
 router.get(
   '/countries/:countryName',
-  isAuth.headCheck,
+
   countriesController.getCountryDetails,
 );
 

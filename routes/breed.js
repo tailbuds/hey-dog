@@ -52,10 +52,10 @@ router.post(
 );
 
 // GET get all breeds /breeds
-router.get('/breeds', isAuth.headCheck, breedController.getAllBreeds);
+router.get('/breeds', breedController.getAllBreeds);
 
 // GET a breed /breed/:breedId
-router.get('/breeds/:breedId', isAuth.headCheck, breedController.getBreed);
+router.get('/breeds/:breedId', breedController.getBreed);
 
 // PATCH a breed /breeds/:breedId?edit=<information|backgroundImage|puppyImage|img1|img2|img3|img4|img5|img6|img7|img8|img9>
 router.patch(
