@@ -9,35 +9,27 @@ const isAuth = require('../controllers/auth');
 // POST /measurements
 router.post(
   '/measurements',
-  isAuth.headCheck,
+  isAuth.postHeadCheck,
   measurementUnitController.postMeasurementUnits,
 );
 
 // GET /measurements
-router.get(
-  '/measurements',
-  ,
-  measurementUnitController.getMeasurementUnits,
-);
+router.get('/measurements', measurementUnitController.getMeasurementUnits);
 
 // GET /measurements/:unit
-router.get(
-  '/measurements/:unit',
-  
-  measurementUnitController.getMeasurementUnit,
-);
+router.get('/measurements/:unit', measurementUnitController.getMeasurementUnit);
 
 // PUT /measurements/:unit
 router.put(
   '/measurements/:unit',
-  isAuth.headCheck,
+  isAuth.putHeadCheck,
   measurementUnitController.putMeasurementUnit,
 );
 
 // DELETE /measurements/:unit
 router.delete(
   '/measurements/:unit',
-  isAuth.headCheck,
+  isAuth.deleteHeadCheck,
   measurementUnitController.deleteMeasurementUnit,
 );
 

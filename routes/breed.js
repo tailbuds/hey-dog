@@ -42,7 +42,7 @@ const upload = multer({
 // POST add breed /breeds
 router.post(
   '/breeds',
-  isAuth.headCheck,
+  isAuth.postHeadCheck,
   upload.fields([
     { name: 'bgImg', maxCount: 1 },
     { name: 'puppyImg', maxCount: 1 },
@@ -60,7 +60,7 @@ router.get('/breeds/:breedId', breedController.getBreed);
 // PATCH a breed /breeds/:breedId?edit=<information|backgroundImage|puppyImage|img1|img2|img3|img4|img5|img6|img7|img8|img9>
 router.patch(
   '/breeds/:breedId',
-  isAuth.headCheck,
+  isAuth.patchHeadCheck,
   upload.fields([
     { name: 'bgImg', maxCount: 1 },
     { name: 'puppyImg', maxCount: 1 },
@@ -80,7 +80,7 @@ router.patch(
 // DELETE delete a breed /breed/:breedId
 router.delete(
   '/breeds/:breedId',
-  isAuth.headCheck,
+  isAuth.deleteHeadCheck,
   breedController.deleteBreed,
 );
 
