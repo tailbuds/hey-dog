@@ -27,6 +27,24 @@ npx install-peerdeps --dev eslint-config-airbnb
 npm start
 ```
 
+## Enviroment Varibles
+
+| Sno. | Enviroment      | Description                                             |
+|------|-----------------|---------------------------------------------------------|
+| 1    | NODE_ENV        | Enviroment of App eg: Development,Production etc.       |
+| 2    | DEV_DB_USERNAME | Database Username                                       |
+| 3    | DEV_DB_PASSWORD | Database Password                                       |
+| 4    | DEV_DB_DATABASE | Database Name                                           |
+| 5    | DEV_DB_HOST     | Database Host Name                                      |
+| 6    | DEV_DB_PORT     | Database Port Number                                    |
+| 7    | DEV_APP_HOST    | Application Host Name                                   |
+| 8    | DEV_APP_PORT    |  Application PORT NUMBER                                |
+| 9    | DEV_SERVER_NAME | Application Server Name                                 |
+| 10   | DEV_SERVER_TYPE | Application  Server TYPE eg:  http,https                |
+| 11   | DEV_SECRET_KEY  | API Header Key Secret for POST,PUT and Delete           |
+| 12   | DEV_PROXY_PORT  | Proxy PORT Number                                       |
+| 13   | RECREATE_DB     | Leave blank if you don't want to recreate your Database |
+
 ## Hey-Dogs APIs
 
 ### Breed APIs
@@ -35,7 +53,7 @@ npm start
 
 ```-X POST http://localhost:3000/breeds```
 
-```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "post-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "x-api-key:DEV_SECRET_KEY"```
 
 Request
 
@@ -138,7 +156,7 @@ Response
 
 ```-X DELETE http://localhost:3000/breeds/{breedId}```
 
-```-H "Accept: application/json" -H "delete-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -296,7 +314,7 @@ Response
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
-```-H "Accept: application/json" -H "patch-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -399,7 +417,7 @@ Response
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
-```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "patch-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "x-api-key:DEV_SECRET_KEY"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -453,7 +471,7 @@ Response
 
 ```-X POST http://localhost:3000/countries```
 
-```-H "Accept: application/json" -H "Content-Type: application/json" -H "post-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 Request
 
@@ -502,7 +520,7 @@ Response
 
 ```-X DELETE http://localhost:3000/country/{countryId}```
 
-```-H "Accept: application/json" -H "delete-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 NOTE: countryId is the ID of the country which is to be passed in the URL.
 
@@ -608,7 +626,7 @@ Response
 
 ```-X PUT http://localhost:3000/country/{countryId}```
 
-```-H "Accept: application/json" -H "put-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 NOTE: countryId is the ID of the country which is to be passed in the URL.
 
@@ -663,7 +681,7 @@ Response
 
 ```-X POST http://localhost:3000/measurements```
 
-```-H "Accept: application/json" -H "Content-Type: application/json" -H "post-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 Request
 
@@ -702,7 +720,7 @@ Response
 
 ```-X DELETE http://localhost:3000/measurement/{shortName}```
 
-```-H "Accept: application/json" -H "delete-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 NOTE: shortName is the shortName of the measurementUnit which is to be passed in the URL.
 
@@ -789,7 +807,7 @@ Response
 
 ```-X POST http://localhost:3000/measurements```
 
-```-H "Accept: application/json" -H "Content-Type: application/json"-H "put-api-key: tailBudsAdmin"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:DEV_SECRET_KEY"```
 
 Request
 
@@ -824,20 +842,3 @@ Response
 | ---- | ---------------------- | --------- | ------ | ------------------------------- |
 | 1    | updatedMeasurementUnit | INTEGER   | 1      | 1 for Success & 0 for Failure   |
 | 2    | reason                 | JSON      | NA     | Returns Reason for Failure ONLY |
-
-## Enviroment Varibles
-
-| Sno. | Enviroment      | Description                                       |
-|------|-----------------|---------------------------------------------------|
-| 1    | NODE_ENV        | Enviroment of App eg: Development,Production etc. |
-| 2    | DEV_DB_USERNAME | Database Username                                 |
-| 3    | DEV_DB_PASSWORD | Database Password                                 |
-| 4    | DEV_DB_DATABASE | Database Name                                     |
-| 5    | DEV_DB_HOST     | Database Host Name                                |
-| 6    | DEV_DB_PORT     | Database Port Number                              |
-| 7    | DEV_APP_HOST    | Application Host Name                             |
-| 8    | DEV_APP_PORT    |  Application PORT NUMBER                          |
-| 9    | DEV_SERVER_NAME | Application Server Name                           |
-| 10   | DEV_SERVER_TYPE | Application  Server TYPE eg:  http,https          |
-| 11   | DEV_SECRET_KEY  | API Header Key Secret for POST,PUT and Delete     |
-| 12   | DEV_PROXY_PORT  | Proxy PORT Number                                 |
