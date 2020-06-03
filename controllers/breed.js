@@ -3,6 +3,27 @@
 const Breed = require('../models/breed');
 const Images = require('../models/images');
 
+//Enviroment Check
+let SERVER_TYPE;
+let SERVER_NAME;
+let APP_PORT;
+
+if (process.env.NODE_ENV === 'development') {
+  SERVER_TYPE = process.env.DEV_SERVER_TYPE;
+  SERVER_NAME = process.env.DEV_SERVER_NAME;
+  APP_PORT = process.env.DEV_APP_PORT;
+}
+if (process.env.NODE_ENV === 'test') {
+  SERVER_TYPE = process.env.TEST_SERVER_TYPE;
+  SERVER_NAME = process.env.TEST_SERVER_NAME;
+  APP_PORT = process.env.TEST_APP_PORT;
+}
+if (process.env.NODE_ENV === 'production') {
+  SERVER_TYPE = process.env.PROD_SERVER_TYPE;
+  SERVER_NAME = process.env.PROD_SERVER_NAME;
+  APP_PORT = process.env.PROD_APP_PORT;
+}
+
 // POST add breed /breeds
 exports.postBreed = (req, res, next) => {
   const fileInfo = req.files;
@@ -83,7 +104,7 @@ exports.getAllBreeds = (req, res, next) => {
   })
     .then((breeds) => {
       breeds.map((breed) => {
-        breed.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.puppyImg}`;
+        breed.puppyImg = `${SERVER_TYPE}://${SERVER_NAME}:${APP_PORT}/${breed.puppyImg}`;
       });
       return breeds;
     })
@@ -103,8 +124,8 @@ exports.getBreed = (req, res, next) => {
     include: ['BreedImages', 'BreedCountry', 'BreedWeight', 'BreedHeight'],
   })
     .then((breed) => {
-      breed.bgImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.bgImg}`;
-      breed.puppyImg = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${breed.puppyImg}`;
+      breed.bgImg = `${SERVER_TYPE}://${SERVER_NAME}:${APP_PORT}/${breed.bgImg}`;
+      breed.puppyImg = `${SERVER_TYPE}://${SERVER_NAME}:${APP_PORT}/${breed.puppyImg}`;
       let images = breed.BreedImages.dataValues;
       breed.originCountry = breed.BreedCountry.dataValues.countryName;
       breed.weightUnit = breed.BreedWeight.shortName;
@@ -113,7 +134,7 @@ exports.getBreed = (req, res, next) => {
         if (images[key] != null && !Number.isInteger(images[key])) {
           images[
             key
-          ] = `${process.env.DEV_SERVER_TYPE}://${process.env.DEV_SERVER_NAME}:${process.env.DEV_APP_PORT}/${images[key]}`;
+          ] = `${SERVER_TYPE}://${SERVER_NAME}:${APP_PORT}/${images[key]}`;
         }
       });
       delete breed.dataValues.BreedCountry;
