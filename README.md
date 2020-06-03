@@ -824,3 +824,20 @@ Response
 | ---- | ---------------------- | --------- | ------ | ------------------------------- |
 | 1    | updatedMeasurementUnit | INTEGER   | 1      | 1 for Success & 0 for Failure   |
 | 2    | reason                 | JSON      | NA     | Returns Reason for Failure ONLY |
+
+## Enviroment Varibles
+
+| Sno. | Enviroment      | Description                                       |
+|------|-----------------|---------------------------------------------------|
+| 1    | NODE_ENV        | Enviroment of App eg: Development,Production etc. |
+| 2    | DEV_DB_USERNAME | Database Username                                 |
+| 3    | DEV_DB_PASSWORD | Database Password                                 |
+| 4    | DEV_DB_DATABASE | Database Name                                     |
+| 5    | DEV_DB_HOST     | Database Host Name                                |
+| 6    | DEV_DB_PORT     | Database Port Number                              |
+| 7    | DEV_APP_HOST    | Application Host Name                             |
+| 8    | DEV_APP_PORT    |  Application PORT NUMBER                          |
+| 9    | DEV_SERVER_NAME | Application Server Name                           |
+| 10   | DEV_SERVER_TYPE | Application  Server TYPE eg:  http,https          |
+| 11   | DEV_SECRET_KEY  | API Header Key Secret for POST,PUT and Delete     |
+| 12   | DEV_PROXY_PORT  | Proxy PORT Number                                 |
