@@ -35,7 +35,7 @@ npm start
 
 ```-X POST http://localhost:3000/breeds```
 
-```-H "Accept: application/json" -H "Content-Type: multipart/form-data"```
+```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "post-api-key: tailBudsAdmin"```
 
 Request
 
@@ -138,7 +138,7 @@ Response
 
 ```-X DELETE http://localhost:3000/breeds/{breedId}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "delete-api-key: tailBudsAdmin"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -296,7 +296,7 @@ Response
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "patch-api-key: tailBudsAdmin"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -399,7 +399,7 @@ Response
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
-```-H "Accept: application/json" -H "Content-Type: multipart/form-data"```
+```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "patch-api-key: tailBudsAdmin"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -453,7 +453,7 @@ Response
 
 ```-X POST http://localhost:3000/countries```
 
-```-H "Accept: application/json" -H "Content-Type: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "post-api-key: tailBudsAdmin"```
 
 Request
 
@@ -502,7 +502,7 @@ Response
 
 ```-X DELETE http://localhost:3000/country/{countryId}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "delete-api-key: tailBudsAdmin"```
 
 NOTE: countryId is the ID of the country which is to be passed in the URL.
 
@@ -606,9 +606,9 @@ Response
 
 #### PUT: Update a Country
 
-```-X DELETE http://localhost:3000/country/{countryId}```
+```-X PUT http://localhost:3000/country/{countryId}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "put-api-key: tailBudsAdmin"```
 
 NOTE: countryId is the ID of the country which is to be passed in the URL.
 
@@ -663,7 +663,7 @@ Response
 
 ```-X POST http://localhost:3000/measurements```
 
-```-H "Accept: application/json" -H "Content-Type: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "post-api-key: tailBudsAdmin"```
 
 Request
 
@@ -702,7 +702,7 @@ Response
 
 ```-X DELETE http://localhost:3000/measurement/{shortName}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "delete-api-key: tailBudsAdmin"```
 
 NOTE: shortName is the shortName of the measurementUnit which is to be passed in the URL.
 
@@ -789,7 +789,7 @@ Response
 
 ```-X POST http://localhost:3000/measurements```
 
-```-H "Accept: application/json" -H "Content-Type: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json"-H "put-api-key: tailBudsAdmin"```
 
 Request
 
