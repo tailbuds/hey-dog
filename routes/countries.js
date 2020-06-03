@@ -7,11 +7,7 @@ const router = express.Router();
 const isAuth = require('../controllers/auth');
 
 // POST /countries
-router.post(
-  '/countries',
-  isAuth.postHeadCheck,
-  countriesController.postCountry,
-);
+router.post('/countries', isAuth.headCheck, countriesController.postCountry);
 
 // GET /countries
 router.get('/countries', countriesController.getCountries);
@@ -26,14 +22,14 @@ router.get(
 // PUT /countries/:countryName
 router.put(
   '/countries/:countryName',
-  isAuth.putHeadCheck,
+  isAuth.headCheck,
   countriesController.putCountry,
 );
 
 // DELETE /countries/:countryName
 router.delete(
   '/countries/:countryName',
-  isAuth.deleteHeadCheck,
+  isAuth.headCheck,
   countriesController.deleteCountryDetails,
 );
 
