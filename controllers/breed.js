@@ -386,7 +386,7 @@ exports.patchBreed = (req, res, next) => {
   }
 };
 
-//DELETE delete breed /breeds/:breedId
+// DELETE delete breed /breeds/:breedId
 exports.deleteBreed = (req, res, next) => {
   Breed.destroy({ where: { breedId: req.params.breedId } })
     .then(() => {
