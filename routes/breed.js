@@ -6,6 +6,8 @@ const multer = require('multer');
 
 const breedController = require('../controllers/breed');
 
+const isAuth = require('../controllers/auth');
+
 const maxSize = 1024 * 1024 * 4;
 // Images storage
 const storage = multer.diskStorage({
@@ -14,7 +16,8 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     cb(
-      null,new Date().toISOString().replace(/:/g, '-') +
+      null,
+      new Date().toISOString().replace(/:/g, '-') +
         file.originalname.replace(/ /g, '+'),
     );
   },
@@ -39,6 +42,7 @@ const upload = multer({
 // POST add breed /breeds
 router.post(
   '/breeds',
+  isAuth.headCheck,
   upload.fields([
     { name: 'bgImg', maxCount: 1 },
     { name: 'puppyImg', maxCount: 1 },
@@ -56,6 +60,7 @@ router.get('/breeds/:breedId', breedController.getBreed);
 // PATCH a breed /breeds/:breedId?edit=<information|backgroundImage|puppyImage|img1|img2|img3|img4|img5|img6|img7|img8|img9>
 router.patch(
   '/breeds/:breedId',
+  isAuth.headCheck,
   upload.fields([
     { name: 'bgImg', maxCount: 1 },
     { name: 'puppyImg', maxCount: 1 },
@@ -73,6 +78,10 @@ router.patch(
 );
 
 // DELETE delete a breed /breed/:breedId
-router.delete('/breeds/:breedId', breedController.deleteBreed);
+router.delete(
+  '/breeds/:breedId',
+  isAuth.headCheck,
+  breedController.deleteBreed,
+);
 
 module.exports = router;
