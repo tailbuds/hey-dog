@@ -4,6 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const compression = require('compression');
+const helmet = require('helmet');
 
 // * Importing environment variable
 require('dotenv').config();
@@ -43,11 +45,24 @@ const errorController = require('./controllers/error');
 // * Initializing express app
 const app = express();
 
+// * Helmet to protect against well known vulnerabilities by setting appropriate HTTP headers
+app.use(helmet());
+
+// * getting real source IP address
+app.set('trust proxy', true);
+
 // * Logging middleware
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(morgan('combined'));
+} else {
+  app.use(morgan('dev'));
+}
 
 // * CORS headers setter
 app.use(cors());
+
+// * Compress all routes
+app.use(compression());
 
 // * Make images folder publicly accessible
 app.use('/images', express.static(path.join(__dirname, 'images')));
