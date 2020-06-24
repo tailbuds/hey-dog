@@ -16,7 +16,7 @@ exports.headCheck = (req, res, next) => {
     return res.status(400).json({ error: secretKeyNeeded });
   }
   if (req.header('x-api-key') !== SECRET_KEY) {
-    return res.status(404).json({ error: secretKeyWrong });
+    return res.status(401).json({ error: secretKeyWrong });
   } 
   next();
 };
