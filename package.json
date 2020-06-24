@@ -4,7 +4,7 @@
   "engines": {
     "node": "10.19.0"
   },
-  "description": "breeddata",
+  "description": "REST APIs for maintaining Breed information at Tailbuds Private Limited",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
