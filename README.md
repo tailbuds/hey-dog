@@ -27,6 +27,46 @@ npx install-peerdeps --dev eslint-config-airbnb
 npm start
 ```
 
+## Enviroment Varibles
+
+| Sno. | Enviroment       | Description                                             |
+|------|------------------|---------------------------------------------------------|
+| 1    | NODE_ENV         | Enviroment of App - development, test or production     |
+| 2    | RECREATE_DB      | Leave blank if you don't want to recreate your Database |
+| 3    | DEV_DB_USERNAME  | Database Username                                       |
+| 4    | DEV_DB_PASSWORD  | Database Password                                       |
+| 5    | DEV_DB_DATABASE  | Database Name                                           |
+| 6    | DEV_DB_HOST      | Database Host Name                                      |
+| 7    | DEV_DB_PORT      | Database Port Number                                    |
+| 8    | DEV_APP_HOST     | Application Host Name                                   |
+| 9    | DEV_APP_PORT     | Application PORT NUMBER                                 |
+| 10   | DEV_SERVER_NAME  | Application Server Name                                 |
+| 11   | DEV_SERVER_TYPE  | Application Server TYPE eg: http,https                  |
+| 12   | DEV_SECRET_KEY   | API Header Key Secret for POST,PUT, PATCH and Delete    |
+| 13   | DEV_PROXY_PORT   | Proxy PORT Number                                       |
+| 14   | TEST_DB_USERNAME | Database Username                                       |
+| 15   | TEST_DB_PASSWORD | Database Password                                       |
+| 16   | TEST_DB_DATABASE | Database Name                                           |
+| 17   | TEST_DB_HOST     | Database Host Name                                      |
+| 18   | TEST_DB_PORT     | Database Port Number                                    |
+| 19   | TEST_APP_HOST    | Application Host Name                                   |
+| 20   | TEST_APP_PORT    | Application PORT NUMBER                                 |
+| 21   | TEST_SERVER_NAME | Application Server Name                                 |
+| 22   | TEST_SERVER_TYPE | Application Server TYPE eg: http,https                  |
+| 23   | TEST_SECRET_KEY  | API Header Key Secret for POST,PUT, PATCH and Delete    |
+| 24   | TEST_PROXY_PORT  | Proxy PORT Number                                       |
+| 25   | PROD_DB_USERNAME | Database Username                                       |
+| 26   | PROD_DB_PASSWORD | Database Password                                       |
+| 27   | PROD_DB_DATABASE | Database Name                                           |
+| 28   | PROD_DB_HOST     | Database Host Name                                      |
+| 29   | PROD_DB_PORT     | Database Port Number                                    |
+| 30   | PROD_APP_HOST    | Application Host Name                                   |
+| 31   | PROD_APP_PORT    | Application PORT NUMBER                                 |
+| 32   | PROD_SERVER_NAME | Application Server Name                                 |
+| 33   | PROD_SERVER_TYPE | Application Server TYPE eg: http,https                  |
+| 34   | PROD_SECRET_KEY  | API Header Key Secret for POST,PUT, PATCH and Delete    |
+| 35   | PROD_PROXY_PORT  | Proxy PORT Number                                       |
+
 ## Hey-Dogs APIs
 
 ### Breed APIs
@@ -35,7 +75,7 @@ npm start
 
 ```-X POST http://localhost:3000/breeds```
 
-```-H "Accept: application/json" -H "Content-Type: multipart/form-data"```
+```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "x-api-key:SECRET_KEY"```
 
 Request
 
@@ -138,7 +178,7 @@ Response
 
 ```-X DELETE http://localhost:3000/breeds/{breedId}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "x-api-key:SECRET_KEY"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -296,7 +336,7 @@ Response
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:SECRET_KEY"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -399,7 +439,7 @@ Response
 
 ```-X PATCH http://localhost:3000/{breedId}?breeds/edit={}```
 
-```-H "Accept: application/json" -H "Content-Type: multipart/form-data"```
+```-H "Accept: application/json" -H "Content-Type: multipart/form-data" -H "x-api-key:SECRET_KEY"```
 
 NOTE: breedId is the ID of the breed which is to be passed in the URL.
 
@@ -453,7 +493,7 @@ Response
 
 ```-X POST http://localhost:3000/countries```
 
-```-H "Accept: application/json" -H "Content-Type: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:SECRET_KEY"```
 
 Request
 
@@ -502,7 +542,7 @@ Response
 
 ```-X DELETE http://localhost:3000/country/{countryId}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "x-api-key:SECRET_KEY"```
 
 NOTE: countryId is the ID of the country which is to be passed in the URL.
 
@@ -606,9 +646,9 @@ Response
 
 #### PUT: Update a Country
 
-```-X DELETE http://localhost:3000/country/{countryId}```
+```-X PUT http://localhost:3000/country/{countryId}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:SECRET_KEY"```
 
 NOTE: countryId is the ID of the country which is to be passed in the URL.
 
@@ -663,7 +703,7 @@ Response
 
 ```-X POST http://localhost:3000/measurements```
 
-```-H "Accept: application/json" -H "Content-Type: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:SECRET_KEY"```
 
 Request
 
@@ -702,7 +742,7 @@ Response
 
 ```-X DELETE http://localhost:3000/measurement/{shortName}```
 
-```-H "Accept: application/json"```
+```-H "Accept: application/json" -H "x-api-key:SECRET_KEY"```
 
 NOTE: shortName is the shortName of the measurementUnit which is to be passed in the URL.
 
@@ -789,7 +829,7 @@ Response
 
 ```-X POST http://localhost:3000/measurements```
 
-```-H "Accept: application/json" -H "Content-Type: application/json"```
+```-H "Accept: application/json" -H "Content-Type: application/json" -H "x-api-key:SECRET_KEY"```
 
 Request
 
