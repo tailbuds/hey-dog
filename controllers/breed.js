@@ -2,6 +2,8 @@
 
 const Breed = require('../models/breed');
 const Images = require('../models/images');
+const Countries = require('../models/countries');
+const MeasurementUnit = require('../models/measurementUnit');
 
 //Enviroment Check
 let SERVER_TYPE;
@@ -27,56 +29,91 @@ if (process.env.NODE_ENV === 'production') {
 // POST add breed /breeds
 exports.postBreed = (req, res, next) => {
   const fileInfo = req.files;
+  const { weightUnit, heightUnit, originCountry } = req.body;
   let images = [];
   fileInfo.images.map((img) => {
     images.push(img.path);
   });
 
-  Breed.create({
-    breedId: null,
-    name: req.body.name,
-    tagline: req.body.tagline,
-    bgImg: fileInfo.bgImg[0].path,
-    puppyImg: fileInfo.puppyImg[0].path,
-    minLife: req.body.minLife,
-    maxLife: req.body.maxLife,
-    learningRate: req.body.learningRate,
-    minLitter: req.body.minLitter,
-    maxLitter: req.body.maxLitter,
-    size: req.body.size,
-    weightUnit: req.body.weightUnit,
-    minMaleWeight: req.body.minMaleWeight,
-    maxMaleWeight: req.body.maxMaleWeight,
-    minFemaleWeight: req.body.minFemaleWeight,
-    maxFemaleWeight: req.body.maxFemaleWeight,
-    heightUnit: req.body.heightUnit,
-    minMaleHeight: req.body.minMaleHeight,
-    maxMaleHeight: req.body.maxMaleHeight,
-    minFemaleHeight: req.body.minFemaleHeight,
-    maxFemaleHeight: req.body.maxFemaleHeight,
-    originCountry: req.body.originCountry,
-    otherNames: req.body.otherNames,
-    desc1: req.body.desc1,
-    desc2: req.body.desc2,
-    desc3: req.body.desc3,
-    desc4: req.body.desc4,
-    desc5: req.body.desc5,
-    desc6: req.body.desc6,
-    desc7: req.body.desc7,
-    desc8: req.body.desc8,
-    desc9: req.body.desc9,
-    desc10: req.body.desc10,
-    desc11: req.body.desc11,
-    desc12: req.body.desc12,
-    desc13: req.body.desc13,
-    desc14: req.body.desc14,
-    desc15: req.body.desc15,
+  const findWeightId = MeasurementUnit.findOne({
+    where: { shortName: weightUnit },
   })
+    .then((res) => {
+      return res.measureId;
+    })
+    .catch((err) => {
+      res.status(400).json({ createdBreed: 0, reason: err });
+    });
+
+  const findHeightId = MeasurementUnit.findOne({
+    where: { shortName: heightUnit },
+  })
+    .then((res) => {
+      return res.measureId;
+    })
+    .catch((err) => {
+      res.status(400).json({ createdBreed: 0, reason: err });
+    });
+
+  const findCountryId = Countries.findOne({
+    where: { countryName: originCountry },
+  })
+    .then((res) => {
+      return res.countryId;
+    })
+    .catch((err) => {
+      res.status(400).json({ createdBreed: 0, reason: err });
+    });
+
+  Promise.all([findWeightId, findHeightId, findCountryId])
+    .then((values) => {
+      const newBreed = Breed.create({
+        breedId: null,
+        name: req.body.name,
+        tagline: req.body.tagline,
+        bgImg: fileInfo.bgImg[0].path,
+        puppyImg: fileInfo.puppyImg[0].path,
+        minLife: req.body.minLife,
+        maxLife: req.body.maxLife,
+        learningRate: req.body.learningRate,
+        minLitter: req.body.minLitter,
+        maxLitter: req.body.maxLitter,
+        size: req.body.size,
+        weightUnit: values[0],
+        minMaleWeight: req.body.minMaleWeight,
+        maxMaleWeight: req.body.maxMaleWeight,
+        minFemaleWeight: req.body.minFemaleWeight,
+        maxFemaleWeight: req.body.maxFemaleWeight,
+        heightUnit: values[1],
+        minMaleHeight: req.body.minMaleHeight,
+        maxMaleHeight: req.body.maxMaleHeight,
+        minFemaleHeight: req.body.minFemaleHeight,
+        maxFemaleHeight: req.body.maxFemaleHeight,
+        originCountry: values[2],
+        otherNames: req.body.otherNames,
+        desc1: req.body.desc1,
+        desc2: req.body.desc2,
+        desc3: req.body.desc3,
+        desc4: req.body.desc4,
+        desc5: req.body.desc5,
+        desc6: req.body.desc6,
+        desc7: req.body.desc7,
+        desc8: req.body.desc8,
+        desc9: req.body.desc9,
+        desc10: req.body.desc10,
+        desc11: req.body.desc11,
+        desc12: req.body.desc12,
+        desc13: req.body.desc13,
+        desc14: req.body.desc14,
+        desc15: req.body.desc15,
+      });
+      return newBreed;
+    })
     .then((newBreed) => {
       return newBreed.breedId;
     })
     .then((newBreedId) => {
-      Images.create({
+      const img = Images.create({
         breedId: newBreedId,
         img1: images[0] ? images[0] : null,
         img2: images[1] ? images[1] : null,
@@ -88,6 +125,7 @@ exports.postBreed = (req, res, next) => {
         img8: images[7] ? images[7] : null,
         img9: images[8] ? images[8] : null,
       });
+      return img;
     })
     .then(() => {
       res.status(201).json({ createdBreed: 1 });
@@ -153,49 +191,84 @@ exports.getBreed = (req, res, next) => {
 // PATCH update breed /breeds/:breedId?edit=<information|backgroundImage|puppyImage|img1|img2|img3|img4|img5|img6|img7|img8|img9>
 exports.patchBreed = (req, res, next) => {
   const { breedId } = req.params;
+  const { weightUnit, heightUnit, originCountry } = req.body;
   let fileInfo;
   switch (req.query.edit) {
     case 'information':
-      Breed.update(
-        {
-          name: req.body.name,
-          tagline: req.body.tagline,
-          minLife: req.body.minLife,
-          maxLife: req.body.maxLife,
-          learningRate: req.body.learningRate,
-          minLitter: req.body.minLitter,
-          maxLitter: req.body.maxLitter,
-          size: req.body.size,
-          weightUnit: req.body.weightUnit,
-          minMaleWeight: req.body.minMaleWeight,
-          maxMaleWeight: req.body.maxMaleWeight,
-          minFemaleWeight: req.body.minFemaleWeight,
-          maxFemaleWeight: req.body.maxFemaleWeight,
-          heightUnit: req.body.heightUnit,
-          minMaleHeight: req.body.minMaleHeight,
-          maxMaleHeight: req.body.maxMaleHeight,
-          minFemaleHeight: req.body.minFemaleHeight,
-          maxFemaleHeight: req.body.maxFemaleHeight,
-          originCountry: req.body.originCountry,
-          otherNames: req.body.otherNames,
-          desc1: req.body.desc1,
-          desc2: req.body.desc2,
-          desc3: req.body.desc3,
-          desc4: req.body.desc4,
-          desc5: req.body.desc5,
-          desc6: req.body.desc6,
-          desc7: req.body.desc7,
-          desc8: req.body.desc8,
-          desc9: req.body.desc9,
-          desc10: req.body.desc10,
-          desc11: req.body.desc11,
-          desc12: req.body.desc12,
-          desc13: req.body.desc13,
-          desc14: req.body.desc14,
-          desc15: req.body.desc15,
-        },
-        { where: { breedId: breedId } },
-      )
+      const findWeightId = MeasurementUnit.findOne({
+        where: { shortName: weightUnit },
+      })
+        .then((res) => {
+          return res.measureId;
+        })
+        .catch((err) => {
+          res.status(400).json({ createdBreed: 0, reason: err });
+        });
+
+      const findHeightId = MeasurementUnit.findOne({
+        where: { shortName: heightUnit },
+      })
+        .then((res) => {
+          return res.measureId;
+        })
+        .catch((err) => {
+          res.status(400).json({ createdBreed: 0, reason: err });
+        });
+
+      const findCountryId = Countries.findOne({
+        where: { countryName: originCountry },
+      })
+        .then((res) => {
+          return res.countryId;
+        })
+        .catch((err) => {
+          res.status(400).json({ createdBreed: 0, reason: err });
+        });
+
+      Promise.all([findWeightId, findHeightId, findCountryId])
+        .then((values) => {
+          const updatedBreed = Breed.update(
+            {
+              name: req.body.name,
+              tagline: req.body.tagline,
+              minLife: req.body.minLife,
+              maxLife: req.body.maxLife,
+              learningRate: req.body.learningRate,
+              minLitter: req.body.minLitter,
+              maxLitter: req.body.maxLitter,
+              size: req.body.size,
+              weightUnit: values[0],
+              minMaleWeight: req.body.minMaleWeight,
+              maxMaleWeight: req.body.maxMaleWeight,
+              minFemaleWeight: req.body.minFemaleWeight,
+              maxFemaleWeight: req.body.maxFemaleWeight,
+              heightUnit: values[1],
+              minMaleHeight: req.body.minMaleHeight,
+              maxMaleHeight: req.body.maxMaleHeight,
+              minFemaleHeight: req.body.minFemaleHeight,
+              maxFemaleHeight: req.body.maxFemaleHeight,
+              originCountry: values[2],
+              otherNames: req.body.otherNames,
+              desc1: req.body.desc1,
+              desc2: req.body.desc2,
+              desc3: req.body.desc3,
+              desc4: req.body.desc4,
+              desc5: req.body.desc5,
+              desc6: req.body.desc6,
+              desc7: req.body.desc7,
+              desc8: req.body.desc8,
+              desc9: req.body.desc9,
+              desc10: req.body.desc10,
+              desc11: req.body.desc11,
+              desc12: req.body.desc12,
+              desc13: req.body.desc13,
+              desc14: req.body.desc14,
+              desc15: req.body.desc15,
+            },
+            { where: { breedId: breedId } },
+          );
+          return updatedBreed;
+        })
         .then(() => {
           res.status(200).json({ updatedBreed: 1 });
         })
